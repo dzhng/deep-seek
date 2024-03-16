@@ -7,7 +7,9 @@ interface ContextProps {}
 const StateContext = createContext<ContextProps>({} as ContextProps);
 
 export function StateProvider(props: PropsWithChildren) {
-  return <StateContext.Provider value={{}}>{props.children}</StateContext.Provider>;
+  return (
+    <StateContext.Provider value={{}}>{props.children}</StateContext.Provider>
+  );
 }
 
 export function useGlobalState() {

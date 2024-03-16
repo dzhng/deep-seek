@@ -1,7 +1,7 @@
-import { toXML } from 'jstoxml';
 import { z } from 'zod';
 
 import { opusCompletion } from '@/services/llm';
+import { toXML } from '@/lib/xml';
 
 // given a user prompt, preprocess and decompose into the exact object to find and the enriched fields
 export async function preprocessPrompt({

@@ -54,7 +54,8 @@ export function cleanRepetativeNewLines(text: string) {
  */
 export function minifyText(text: string) {
   // use to remove any lines of text that's just purely a long base64 string (happens in html to markdown conversions)
-  const base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+  const base64regex =
+    /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
   const regex = /(\r?\n)+/g;
   const lines = text.split('\n');
   return (
@@ -97,7 +98,9 @@ export function normalizeMarkdownHeadings(markdown: string) {
   }
 
   const minLevel = Math.min(
-    ...headings.map(heading => heading.length - heading.replace(/^#+/, '').length),
+    ...headings.map(
+      heading => heading.length - heading.replace(/^#+/, '').length,
+    ),
   );
   const shift = minLevel - 1;
 
@@ -190,7 +193,10 @@ export function chunkString(text: string, maxLength: number): string[] {
  * @param maxLength - maximum length of each chunk
  * @returns array of chunks
  */
-export function chunkMultipleStrings(textSections: string[], maxLength: number): string[] {
+export function chunkMultipleStrings(
+  textSections: string[],
+  maxLength: number,
+): string[] {
   return textSections.map(section => chunkString(section, maxLength)).flat();
 }
 

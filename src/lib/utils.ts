@@ -7,7 +7,10 @@ const noop = () => undefined;
 /**
  * Throttles HTTP requests made by a ky instance. Very useful for enforcing rate limits.
  */
-export function throttleKy(ky: typeof kyImpl, throttleFn: ReturnType<typeof pThrottle>) {
+export function throttleKy(
+  ky: typeof kyImpl,
+  throttleFn: ReturnType<typeof pThrottle>,
+) {
   return ky.extend({
     hooks: {
       beforeRequest: [throttleFn(noop)],
