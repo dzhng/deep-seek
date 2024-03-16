@@ -1,0 +1,7 @@
+announcement_message="\n🚀🚀 Running pre-commit hook 🚀🚀\n"
+
+echo $announcement_message
+
+npx lint-staged
+
+exit 0

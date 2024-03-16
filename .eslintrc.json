@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended"
+  ],
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn", "cva"],
+      "config": "tailwind.config.js"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "tailwindcss/no-custom-classname": "off",
+        "tailwindcss/classnames-order": "error",
+        "complexity": ["warn", 30],
+        "react-hooks/exhaustive-deps": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "caughtErrorsIgnorePattern": "^_"
+          }
+        ]
+      }
+    }
+  ]
+}
