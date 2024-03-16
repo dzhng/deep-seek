@@ -62,6 +62,9 @@ dependencies:
   jsdom:
     specifier: ^24.0.0
     version: 24.0.0
+  jstoxml:
+    specifier: ^5.0.1
+    version: 5.0.1
   ky:
     specifier: ^1.2.0
     version: 1.2.2
@@ -163,6 +166,9 @@ devDependencies:
   '@types/jsdom':
     specifier: ^21.1.6
     version: 21.1.6
+  '@types/jstoxml':
+    specifier: ^2.0.4
+    version: 2.0.4
   '@types/lodash':
     specifier: ^4.14.202
     version: 4.17.0
@@ -2104,6 +2110,10 @@ packages:
 
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/jstoxml@2.0.4:
+    resolution: {integrity: sha512-XHUMp2t8CfJUsKt8qjlspZWlkVeveFg2eF/kRV8CKiNQ+Fd3mJkfexIDXtZEnG/4aJZRCVNNn46zNddSVIUN0w==}
     dev: true
 
   /@types/katex@0.16.7:
@@ -5095,6 +5105,10 @@ packages:
   /jsonrepair@3.6.0:
     resolution: {integrity: sha512-ZvOmoq35LhlDaf1W3uT7e17Bh2dYbln1+pdJ1KUIMkRAoUC4mvXX+dbr9Ih6dDmYvB0mdijAucyPk4xX1cEjww==}
     hasBin: true
+    dev: false
+
+  /jstoxml@5.0.1:
+    resolution: {integrity: sha512-90mR0XwLzdbRr06IGsEf67Apac2ImjRbfWTVBYP7juSnnXHlW6H70b9sHGnIn5QEvXZvXxi6IXIoflzmMlRV5A==}
     dev: false
 
   /jsx-ast-utils@3.3.5:

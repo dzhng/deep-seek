@@ -1,3 +1,4 @@
+import { preprocessPrompt } from '@/registry/agent/planner';
 import { inngest } from '@/registry/inngest/client';
 
 export const run = inngest.createFunction(
@@ -5,5 +6,9 @@ export const run = inngest.createFunction(
   { event: 'app/query.run' },
   async ({ event, step }) => {
     console.info('Running query', event.data.prompt);
+
+    const preprocessed = await step.run('preprocess-prompt', async () =>
+      preprocessPrompt({ userPrompt: event.data.prompt }),
+    );
   },
 );
