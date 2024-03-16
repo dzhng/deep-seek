@@ -4,10 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:inngest": "npx inngest-cli@latest dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --import tsx --test src/**/*test.ts"
+    "lint:fix": "next lint --fix",
+    "format:write": "prettier --ignore-path .gitignore --write \"./**/*.{js,ts,tsx,mdx}\"",
+    "format:check": "prettier --ignore-path .gitignore  --check \"./**/*.{js,ts,tsx,mdx}\"",
+    "test": "node --import tsx --test src/**/*test.ts",
+    "vercel:env": "vercel env pull .env",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

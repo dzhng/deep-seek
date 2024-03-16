@@ -1,5 +1,6 @@
 export type Events = {
-  'test/noop': { data: object };
+  'test/noop': { data: unknown };
+  'app/query.run': { data: { prompt: string } };
 };
 
 export type EventKeys = keyof Events;
