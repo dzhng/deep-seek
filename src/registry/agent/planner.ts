@@ -63,6 +63,21 @@ export async function preprocessPrompt({
         ],
       },
     },
+    {
+      prompt:
+        'Find a list of all the companies who have spoken at agi house the last month.',
+      output: {
+        objective:
+          'Find all companies who have sponen at agi house last month.',
+        direction:
+          'Search for agi house events, extract companies from each event.',
+        urls: [],
+        fields: [
+          { name: 'Name', description: 'Company name' },
+          { name: 'Domain', description: 'Company domain' },
+        ],
+      },
+    },
   ];
 
   const examplesString = toXML({
