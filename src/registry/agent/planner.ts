@@ -61,6 +61,30 @@ export async function createResearchPlan({ objective }: { objective: string }) {
         { name: 'query', type: 'string', description: 'The search query.' },
       ],
     },
+    {
+      tool_name: 'finish',
+      description:
+        "Use this tool when you have all the data you need to return the final answer to the user's query",
+      parameters: [
+        {
+          name: 'result',
+          type: 'string',
+          description: 'The final result to return to the user.',
+        },
+      ],
+    },
+    {
+      tool_name: 'error',
+      description:
+        'Use this tool when you are stuck or detect an error in the system',
+      parameters: [
+        {
+          name: 'message',
+          type: 'string',
+          description: 'The error message to show the user.',
+        },
+      ],
+    },
   ];
 
   const toolsString = toXML({
@@ -75,5 +99,7 @@ export async function createResearchPlan({ objective }: { objective: string }) {
     schema,
   });
 
-  return res.data;
+  console.log('PROMPT', prompt);
+  console.log('RES', res.content);
+  return { data: res.data, respond: res.respond };
 }
