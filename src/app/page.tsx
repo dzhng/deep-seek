@@ -54,7 +54,7 @@ export default function Home() {
               <FormItem>
                 <FormLabel>Query</FormLabel>
                 <FormControl>
-                  <Input placeholder="Sam Altman" {...field} />
+                  <Input placeholder="Hello world" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
