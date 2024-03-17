@@ -27,6 +27,8 @@ export const run = inngest.createFunction(
         const params = await invokeTool(plan.data.tool as any);
         if (params) {
           plan = await plan.respond(params);
+          console.log('RESPONSE', params);
+          console.log('NEW PLAN', plan.data);
         } else {
           console.error('ERROR INVOKING TOOL');
           return;
