@@ -1,5 +1,5 @@
 export type Events = {
-  'test/noop': { data: unknown };
+  'test/noop': { data: any };
   'app/query.run': { data: { prompt: string } };
 };
 

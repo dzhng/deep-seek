@@ -1,9 +1,9 @@
 import { compact, uniqBy } from 'lodash';
 import { z } from 'zod';
 
+import { BrowseResults } from '@/services/browse';
 import { gpt3xlCompletion } from '@/services/llm';
 import { ensureAbsolute } from '@/lib/url';
-import { BrowseResults } from '@/registry/internet/browse';
 
 export type UrlResult = {
   reason: string;

@@ -1,7 +1,7 @@
 import Metaphor from 'metaphor-node';
 
+import { browse } from '@/services/browse';
 import { toXML } from '@/lib/xml';
-import { browse } from '@/registry/internet/processor/browse';
 
 const metaphor = new Metaphor(process.env.METAPHOR_API_KEY ?? '');
 
