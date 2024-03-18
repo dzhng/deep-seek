@@ -21,40 +21,46 @@ export type SearchResult = {
   originalQuery: string;
 };
 
+const MaxContentChunkSize = 60_000;
 const metaphor = new Metaphor(process.env.METAPHOR_API_KEY ?? '');
 
-const MaxContentChunkSize = 60_000;
-
-export async function searchAndBrowse({ query }: { query: string }) {
-  const { objective, queries } = await generateQueryQuestions(query);
-
-  const intermediaryResults: SearchResult[] = [];
-
-  await Promise.allSettled(
+async function search({
+  objective,
+  queries,
+}: {
+  objective: string;
+  queries: string[];
+}): Promise<SearchResult[]> {
+  const searchRes = await Promise.allSettled(
     queries.slice(0, 6).map(async query => {
       const searchResult = await metaphor.search(query, {
         type: 'keyword',
         useAutoprompt: true,
         numResults: 3,
       });
-      const res = searchResult.results?.map(r => ({
+      return searchResult.results?.map(r => ({
         metaphorId: r.id,
         link: normalizeUrl(r.url),
         title: r.title,
         originalQuery: query,
       }));
-
-      if (res) {
-        intermediaryResults.push(...res);
-      }
     }),
+  );
+
+  const intermediaryResults: SearchResult[] = flatten(
+    compact(searchRes.map(r => (r.status === 'fulfilled' ? r.value : null))),
   );
 
   const results = uniqBy(intermediaryResults, r => r.link);
   const searchResults = await rankSearchResults(results, objective);
 
   // filter out low score results, and only inference with the top 8
-  const filteredResults = searchResults.filter(r => r.score > 0.1).slice(0, 8);
+  return searchResults.filter(r => r.score > 0.1).slice(0, 8);
+}
+
+export async function searchAndBrowse({ query }: { query: string }) {
+  const { objective, queries } = await generateQueryQuestions(query);
+  const searchResults = await search({ objective, queries });
 
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: MaxContentChunkSize,
@@ -68,7 +74,7 @@ export async function searchAndBrowse({ query }: { query: string }) {
 
   try {
     const res = await metaphor.getContents(
-      filteredResults.map(r => r.metaphorId),
+      searchResults.map(r => r.metaphorId),
     );
 
     const contentRes = res.contents.map(record => {
@@ -92,7 +98,7 @@ export async function searchAndBrowse({ query }: { query: string }) {
     content.push(...validContent);
   } catch (e) {
     console.warn('Error getting contents from metaphor', e);
-    urlsToBrowse.push(...filteredResults.map(r => r.link));
+    urlsToBrowse.push(...searchResults.map(r => r.link));
   }
 
   // use fallback browser
