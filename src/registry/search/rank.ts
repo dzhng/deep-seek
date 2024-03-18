@@ -3,7 +3,7 @@ import { remove, uniqBy } from 'lodash';
 import { z } from 'zod';
 
 import { gpt3xlCompletion, sonnetCompletion } from '@/services/llm';
-import { UrlResult } from '@/registry/internet/extract';
+import { UrlResult } from '@/registry/internet/extract-urls';
 import { SearchResult } from '@/registry/search/search-browse';
 
 export async function rankSearchResults(

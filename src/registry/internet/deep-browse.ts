@@ -2,7 +2,7 @@ import { compact, uniqBy } from 'lodash';
 
 import { browse, BrowseResults } from '@/services/browse';
 import { normalizeUrl } from '@/lib/url';
-import { extractUrls } from '@/registry/internet/extract';
+import { extractUrls } from '@/registry/internet/extract-urls';
 
 // browse the given url, recursively click into other links, extract data based on given instruction
 export async function deepBrowse({
