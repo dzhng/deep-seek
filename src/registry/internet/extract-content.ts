@@ -17,13 +17,17 @@ const completion: typeof gpt3xlCompletion = (prompt, opt) =>
 // insert markers into the page content for the llm to use as anchor for text extraction
 export function processContent(content: string): string {
   const lines = content.split('\n');
-  let markerIndex = 1;
+  let markerIndex = 2;
   const processed = lines.map(line => {
-    const sentences = splitSentence(line);
+    if (!line) {
+      return '';
+    }
+
+    const sentences = splitSentence(line, 16);
     // add marker at beginning of line, then at end of each sentence.
-    return `(${markerIndex++}) ${sentences.map(s => `${s} (${markerIndex++})`).join(' ')}`;
+    return sentences.map(s => `${s}<m>${markerIndex++}</m>`).join(' ');
   });
-  return processed.join('\n');
+  return `<m>1</m>${processed.join('\n')}`;
 }
 
 export async function extractContent({

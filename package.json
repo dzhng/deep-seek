@@ -13,7 +13,7 @@
     "lint:fix": "next lint --fix",
     "format:write": "prettier --ignore-path .gitignore --write \"./**/*.{js,ts,tsx,mdx}\"",
     "format:check": "prettier --ignore-path .gitignore  --check \"./**/*.{js,ts,tsx,mdx}\"",
-    "test": "node --import tsx --test src/**/*test.ts",
+    "test": "node --env-file .env --import tsx --test src/**/*test.ts",
     "vercel:env": "vercel env pull .env",
     "prepare": "husky"
   },
