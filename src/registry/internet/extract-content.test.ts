@@ -1,11 +1,12 @@
 import assert from 'node:assert';
 import { describe, it } from 'node:test';
 
-import { processContent } from '@/registry/internet/extract-content';
+import {
+  extractContent,
+  processContent,
+} from '@/registry/internet/extract-content';
 
-describe('processContent', () => {
-  it('Should add markers to content correctly', () => {
-    const input = `# Aomni
+const input = `# Aomni
 
 ## Setting up Supabase
 
@@ -117,7 +118,7 @@ To use the correct import formatting (non-relative), make sure you set your edit
 
 - Query keys for hooks should be kept private. Try to organize "useQuery" calls so that all queries & mutations that share the same query keys (including for invalidation) are grouped in the same pattern. Exposing internal working ids like query keys are an anti-pattern.`;
 
-    const ideal = `<m>1</m># Aomni<m>2</m>
+const ideal = `<m>1</m># Aomni<m>2</m>
 
 ## Setting up Supabase<m>3</m>
 
@@ -229,7 +230,19 @@ For reference see the fix for [Too many calls to Location or History APIs within
 
 - Query keys for hooks should be kept private.<m>87</m> Try to organize "useQuery" calls so that all queries & mutations that share the same query keys (including for invalidation) are grouped in the same pattern.<m>88</m> Exposing internal working ids like query keys are an anti-pattern.<m>89</m>`;
 
+describe('processContent', () => {
+  it('Should add markers to content correctly', () => {
     const processed = processContent(input);
-    assert.equal(processed, ideal);
+    assert.equal(processed.content, ideal);
+    assert.equal(processed.sentences.length, 88);
+  });
+
+  it('Should extract the right text', async () => {
+    const extracted = await extractContent({
+      page: { url: '', content: input },
+      query: 'How to setup supabase',
+    });
+
+    console.log(extracted);
   });
 });
