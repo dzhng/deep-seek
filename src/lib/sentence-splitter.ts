@@ -2,7 +2,6 @@ import { last } from 'lodash';
 import model from 'wink-eng-lite-web-model';
 import winkNLP from 'wink-nlp';
 
-// Instantiate winkNLP.
 const nlp = winkNLP(model);
 
 export function splitSentence(text: string, minLength = 0): string[] {
