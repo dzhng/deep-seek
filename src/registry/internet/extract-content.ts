@@ -58,7 +58,7 @@ export async function extractContent({
 }): Promise<ContentResult[]> {
   const processed = processContent(page.content);
   const { data } = await completion(
-    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure the text extracted makes sense on its own.\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
+    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own.\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
     {
       schema: z.object({
         markers: z
