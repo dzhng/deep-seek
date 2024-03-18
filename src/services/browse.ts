@@ -4,6 +4,7 @@ const BrowseApiEndpoint = 'https://browse-api.vercel.app';
 const BrowseApiToken = process.env.BROWSE_API_TOKEN ?? '';
 
 export type BrowseResults = {
+  url: string;
   title?: string;
   content: string;
 };
@@ -20,7 +21,7 @@ export async function browse(params: {
       // browse api endpoint has timeout of 5 min
       timeout: 300_000,
     });
-    return res.json();
+    return { url: params.url, ...res.json<BrowseResults>() };
   } catch (e: any) {
     console.error('Error calling browse endpoint', e.message);
     return;
