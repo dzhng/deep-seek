@@ -52,13 +52,15 @@ export function processContent(content: string): {
 export async function extractContent({
   page,
   query,
+  nodesToExtract,
 }: {
   page: BrowseResults;
   query: string;
+  nodesToExtract?: string[];
 }): Promise<ContentResult[]> {
   const processed = processContent(page.content);
   const { data } = await completion(
-    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own.\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
+    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own. The text extracted will form nodes on a knowledge graph.${nodesToExtract ? ` Make sure the types of content extracted is of the following: ${nodesToExtract.join(', ')}` : ''}\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
     {
       schema: z.object({
         markers: z
@@ -66,7 +68,9 @@ export async function extractContent({
             reason: z.string().describe('Describe why this text is selected.'),
             title: z
               .string()
-              .describe('Give a short title to the text being selected.'),
+              .describe(
+                'The human readable title of this node on the knowledge graph, be as specific as possible. e.g. if the extracted text talks about a specific product, use the exact name of the product as the title.',
+              ),
             from: z.number().describe('The initial marker id to start from.'),
             to: z.number().describe('The marker id to end selection at.'),
           })

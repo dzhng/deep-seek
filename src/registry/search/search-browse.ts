@@ -9,10 +9,7 @@ import { normalizeUrl } from '@/lib/url';
 import { deepBrowse } from '@/registry/internet/deep-browse';
 import { extractContent } from '@/registry/internet/extract-content';
 import { rankSearchResults } from '@/registry/search/rank';
-import {
-  generateAnswer,
-  generateQueryQuestions,
-} from '@/registry/search/research';
+import { generateQueryQuestions } from '@/registry/search/research';
 
 export type SearchResult = {
   metaphorId: string;
@@ -59,7 +56,14 @@ async function search({
   return searchResults.filter(r => r.score > 0.1).slice(0, 8);
 }
 
-export async function searchAndBrowse({ query }: { query: string }) {
+export async function searchAndBrowse({
+  query,
+  nodesToExtract,
+}: {
+  query: string;
+  // describe the type of nodes to extract for building the result knowledge graph
+  nodesToExtract?: string[];
+}) {
   const { objective, queries } = await generateQueryQuestions(query);
   const searchResults = await search({ objective, queries });
 
@@ -136,7 +140,7 @@ export async function searchAndBrowse({ query }: { query: string }) {
         page: r,
         query: r.query ?? 'Extract all relevant content',
       });
-      return res;
+      return res.map(content => ({ ...content, url: r.url }));
     }),
   );
 
@@ -145,5 +149,4 @@ export async function searchAndBrowse({ query }: { query: string }) {
   );
 
   return content;
-  //const res = await generateAnswer(objective, queries, content);
 }
