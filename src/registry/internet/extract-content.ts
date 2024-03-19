@@ -60,7 +60,7 @@ export async function extractContent({
 }): Promise<ContentResult[]> {
   const processed = processContent(page.content);
   const { data } = await completion(
-    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own. The text extracted will form nodes on a knowledge graph.${nodesToExtract && nodesToExtract.length ? ` Make sure the types of content extracted is of the following: ${nodesToExtract.join(', ')}` : ''}\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
+    `Given the following page content, extract any relevant text from the page that can be used to answer the following query:\n<query>${query}</query>\n\nThe content will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own. The text extracted will form nodes on a knowledge graph.${nodesToExtract && nodesToExtract.length ? ` Make sure the types of content extracted is one of the following:\n<types>\n${nodesToExtract.map(n => `<type>${n}</type>`).join('\n')}\n</types>` : ''}\n\nPage content:\n<page>\n<title>\n${page.title}\n<title>\n<content>\n${processed.content}\n</content>\n</page>`,
     {
       schema: z.object({
         markers: z
@@ -72,7 +72,11 @@ export async function extractContent({
                 'The title of this node on the knowledge graph, be as specific as possible. If the extracted text talks about a specific product, use the exact name of the product as the title.',
               ),
             from: z.number().describe('The initial marker id to start from.'),
-            to: z.number().describe('The marker id to end selection at.'),
+            to: z
+              .number()
+              .describe(
+                'The marker id to end selection at, make sure it is AFTER the from marker.',
+              ),
           })
           .array()
           .describe('Markers to select to extract the text.'),
