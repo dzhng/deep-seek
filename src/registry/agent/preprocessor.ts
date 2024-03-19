@@ -10,8 +10,9 @@ export async function preprocessPrompt({
   userPrompt: string;
 }): Promise<{
   objective: string;
-  direction?: string;
+  direction: string;
   urls: string[];
+  mainField: { name: string; description: string };
   fields: { name: string; description: string }[];
 }> {
   const schema = z.object({
@@ -22,14 +23,21 @@ export async function preprocessPrompt({
       .string()
       .describe(
         'Summarize how an information retrieval system would execute this.',
-      )
-      .optional(),
+      ),
     urls: z
       .string()
       .array()
       .describe(
         'A list of URLs that is included in the user prompt, can be an empty array if nothing is included.',
       ),
+    mainField: z
+      .object({
+        name: z.string().describe('A 1 - 3 word name for this object'),
+        description: z
+          .string()
+          .describe('Describe the information that is going to be extracted.'),
+      })
+      .describe('What is the main object you are extracting?'),
     fields: z
       .object({
         name: z.string().describe('A 1 - 3 word name for the column.'),
@@ -40,7 +48,9 @@ export async function preprocessPrompt({
           ),
       })
       .array()
-      .describe('What columns should be in the final output.'),
+      .describe(
+        'What additional columns should be in the final output, in additional to the mainField.',
+      ),
   });
 
   const examples: { prompt: string; output: z.infer<typeof schema> }[] = [
@@ -52,6 +62,10 @@ export async function preprocessPrompt({
         direction:
           'Go to the URL, extract a list of speaker speakers, then research each fields individually.',
         urls: ['https://partiful.com/e/kEQfMgxPaDKJXgFNT6n5'],
+        mainField: {
+          name: 'Name',
+          description: 'Name of the speaker',
+        },
         fields: [
           { name: 'Email', description: 'Email of the speaker' },
           {
@@ -72,10 +86,8 @@ export async function preprocessPrompt({
         direction:
           'Search for agi house events, extract companies from each event.',
         urls: [],
-        fields: [
-          { name: 'Name', description: 'Company name' },
-          { name: 'Domain', description: 'Company domain' },
-        ],
+        mainField: { name: 'Name', description: 'Company name' },
+        fields: [{ name: 'Domain', description: 'Company domain' }],
       },
     },
   ];

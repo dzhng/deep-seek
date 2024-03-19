@@ -6,7 +6,7 @@ describe('searchAndBrowse', () => {
   it('It should extract the right content for a search result', async () => {
     const content = await searchAndBrowse({
       query: 'Best laptops under $2000',
-      nodesToExtract: ['laptop models'],
+      nodesToExtract: ['Laptop - Name and model of the laptop'],
     });
 
     console.log('CONTENT', content);
