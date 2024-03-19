@@ -2,7 +2,7 @@ import { flatten } from 'lodash';
 import { z } from 'zod';
 
 import { BrowseResults } from '@/services/browse';
-import { gpt3xlCompletion } from '@/services/llm';
+import { haikuCompletion } from '@/services/llm';
 import { splitSentence } from '@/lib/sentence-splitter';
 
 export type ContentResult = {
@@ -13,8 +13,8 @@ export type ContentResult = {
 
 const SystemPrompt = `You are an expert AI agent tasked with browsing and classifying websites. Follow the user's instructions exactly. Never say common misconceptions, outdated information, lies, fiction, myths, jokes, or memes. The user has an IQ of 200 and require expert level knowledge. Never write any information that is not in the original content.`;
 
-const completion: typeof gpt3xlCompletion = (prompt, opt) =>
-  gpt3xlCompletion(prompt, { ...opt, systemMessage: SystemPrompt });
+const completion: typeof haikuCompletion = (prompt, opt) =>
+  haikuCompletion(prompt, { ...opt, systemMessage: SystemPrompt });
 
 // insert markers into the page content for the llm to use as anchor for text extraction
 export function processContent(content: string): {
@@ -60,7 +60,7 @@ export async function extractContent({
 }): Promise<ContentResult[]> {
   const processed = processContent(page.content);
   const { data } = await completion(
-    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own. The text extracted will form nodes on a knowledge graph.${nodesToExtract ? ` Make sure the types of content extracted is of the following: ${nodesToExtract.join(', ')}` : ''}\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
+    `Given the following page content, extract any relevant text from the page that answer the following query:\n${query}\n\nThe page will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own. The text extracted will form nodes on a knowledge graph.${nodesToExtract && nodesToExtract.length ? ` Make sure the types of content extracted is of the following: ${nodesToExtract.join(', ')}` : ''}\nThe title of the page is:\n${page.title}\n\nPage content to extract:\n\`\`\`\n${processed.content}\n\`\`\``,
     {
       schema: z.object({
         markers: z
@@ -69,7 +69,7 @@ export async function extractContent({
             title: z
               .string()
               .describe(
-                'The human readable title of this node on the knowledge graph, be as specific as possible. e.g. if the extracted text talks about a specific product, use the exact name of the product as the title.',
+                'The title of this node on the knowledge graph, be as specific as possible. If the extracted text talks about a specific product, use the exact name of the product as the title.',
               ),
             from: z.number().describe('The initial marker id to start from.'),
             to: z.number().describe('The marker id to end selection at.'),

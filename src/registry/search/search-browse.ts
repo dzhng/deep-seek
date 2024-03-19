@@ -139,6 +139,7 @@ export async function searchAndBrowse({
       const res = await extractContent({
         page: r,
         query: r.query ?? 'Extract all relevant content',
+        nodesToExtract,
       });
       return res.map(content => ({ ...content, url: r.url }));
     }),

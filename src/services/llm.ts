@@ -50,6 +50,20 @@ export const sonnet = new AnthropicChatApi(
 export const sonnetCompletion: Completion = partial(completion, sonnet);
 export const sonnetChat: Chat = partial(chat, sonnet);
 
+export const haiku = new AnthropicChatApi(
+  {
+    apiKey: process.env.ANTHROPIC_KEY!,
+  },
+  {
+    model: 'claude-3-haiku-20240307',
+    stream: true,
+    temperature: 0,
+    contextSize: 160_000, // NOTE: anthropic is actually 200k, but do less because we're using the wrong tokenizer (tiktoken) to measure context size, and we don't want to pay too much for large context.
+  },
+);
+export const haikuCompletion: Completion = partial(completion, haiku);
+export const haikuChat: Chat = partial(chat, haiku);
+
 export const opus = new AnthropicChatApi(
   {
     apiKey: process.env.ANTHROPIC_KEY!,
