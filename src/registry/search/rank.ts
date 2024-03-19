@@ -39,7 +39,6 @@ export async function rankSearchResults(
       }),
     },
   );
-  console.info('Search result scored: ', res.data);
 
   // map the score back to original results, and sort
   const resultsWithScore: (SearchResult & { score: number })[] =

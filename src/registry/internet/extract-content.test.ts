@@ -237,10 +237,19 @@ describe('processContent', () => {
     assert.equal(processed.sentences.length, 88);
   });
 
-  it('Should extract the right text', async () => {
+  it('Should extract the right text when asked a specific question', async () => {
     const extracted = await extractContent({
       page: { url: '', content: input },
       query: 'How to setup supabase',
+    });
+
+    console.log(extracted);
+  });
+
+  it('Should extract the all content when asked', async () => {
+    const extracted = await extractContent({
+      page: { url: '', content: input },
+      query: 'Extract the relevant content',
     });
 
     console.log(extracted);

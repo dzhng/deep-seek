@@ -7,6 +7,7 @@ import { BrowseResults } from '@/services/browse';
 import { minifyText, normalizeMarkdownHeadings } from '@/lib/format';
 import { normalizeUrl } from '@/lib/url';
 import { deepBrowse } from '@/registry/internet/deep-browse';
+import { extractContent } from '@/registry/internet/extract-content';
 import { rankSearchResults } from '@/registry/search/rank';
 import {
   generateAnswer,
@@ -18,7 +19,7 @@ export type SearchResult = {
   link: string;
   title?: string;
   snippet?: string;
-  originalQuery: string;
+  query: string;
 };
 
 const MaxContentChunkSize = 60_000;
@@ -42,7 +43,7 @@ async function search({
         metaphorId: r.id,
         link: normalizeUrl(r.url),
         title: r.title,
-        originalQuery: query,
+        query,
       }));
     }),
   );
@@ -67,10 +68,10 @@ export async function searchAndBrowse({ query }: { query: string }) {
   });
 
   // list of urls to use browser on, this is for fallback purposes only, if metaphor.getContents fails or errors
-  const urlsToBrowse: string[] = [];
+  const urlsToBrowse: { url: string; query: string | null }[] = [];
 
   // final return data
-  const content: BrowseResults[] = [];
+  const browseResults: (BrowseResults & { query: string | null })[] = [];
 
   try {
     const res = await metaphor.getContents(
@@ -83,36 +84,43 @@ export async function searchAndBrowse({ query }: { query: string }) {
             minifyText(NodeHtmlMarkdown.translate(record.extract)),
           )
         : record.text;
-      const data: BrowseResults = {
+      return {
         url: record.url,
         title: record.title,
         content: content ? textSplitter.splitText(content)[0]?.trim() : '',
+        query:
+          searchResults.find(r => r.metaphorId === record.id)?.query ?? null,
       };
-      return data;
     });
 
     const invalidContent = contentRes.filter(r => !r.content);
-    urlsToBrowse.push(...invalidContent.map(c => c.url));
+    urlsToBrowse.push(
+      ...invalidContent.map(c => ({ url: c.url, query: c.query })),
+    );
 
     const validContent = contentRes.filter(r => r.content);
-    content.push(...validContent);
+    browseResults.push(...validContent);
   } catch (e) {
     console.warn('Error getting contents from metaphor', e);
-    urlsToBrowse.push(...searchResults.map(r => r.link));
+    urlsToBrowse.push(
+      ...searchResults.map(r => ({ url: r.link, query: r.query })),
+    );
   }
 
-  // use fallback browser
+  // use fallback browser for if metaphore endpoint goes down (may happen sometimes when index is incomplete)
   if (urlsToBrowse.length > 0) {
     const browseRes = await Promise.allSettled(
-      urlsToBrowse.map(async url =>
-        deepBrowse({
-          initialUrl: url,
+      urlsToBrowse.map(async r => {
+        const res = await deepBrowse({
+          initialUrl: r.url,
           maxBrowse: 1,
           slowFallback: false,
-        }),
-      ),
+          direction: r.query ?? undefined,
+        });
+        return res.map(browseResult => ({ ...browseResult, query: r.query }));
+      }),
     );
-    content.push(
+    browseResults.push(
       ...flatten(
         compact(
           browseRes.map(r => (r.status === 'fulfilled' ? r.value : null)),
@@ -121,5 +129,21 @@ export async function searchAndBrowse({ query }: { query: string }) {
     );
   }
 
-  const res = await generateAnswer(objective, queries, content);
+  // go through all the browse results and extract content to build knowledge graph
+  const contentRes = await Promise.allSettled(
+    browseResults.map(async r => {
+      const res = await extractContent({
+        page: r,
+        query: r.query ?? 'Extract all relevant content',
+      });
+      return res;
+    }),
+  );
+
+  const content = flatten(
+    compact(contentRes.map(r => (r.status === 'fulfilled' ? r.value : null))),
+  );
+
+  return content;
+  //const res = await generateAnswer(objective, queries, content);
 }
