@@ -1,5 +1,6 @@
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
+import { mergeContent } from '@/registry/internet/merge-content';
 import { searchAndBrowse } from '@/registry/search/search-browse';
 
 export const run = inngest.createFunction(
@@ -12,13 +13,18 @@ export const run = inngest.createFunction(
       preprocessPrompt({ userPrompt: event.data.prompt }),
     );
 
-    const res = await step.run('search-browse', async () =>
+    const nodeType = `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`;
+    const browseRes = await step.run('search-browse', async () =>
       searchAndBrowse({
         query: preprocessed.objective,
-        nodeType: `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`,
+        nodeType,
       }),
     );
 
-    console.log(res);
+    const merged = await step.run('merge-content', async () =>
+      mergeContent({ content: browseRes, nodeType }),
+    );
+
+    // now iterate through each item and get all data for fields
   },
 );

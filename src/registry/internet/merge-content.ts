@@ -10,13 +10,13 @@ const completion: typeof haikuCompletion = (prompt, opt) =>
 
 export async function mergeContent({
   content,
-  type,
+  nodeType,
 }: {
   content: ContentResult[];
-  type: string;
+  nodeType: string;
 }): Promise<ContentResult[]> {
   const { data } = await completion(
-    `Given the following nodes of a knowledge graph, find any knowledge graph nodes of the same entity and combine them. Just return nodes that needs to be combined. The nodes are of the following type:\n<type>${type}</type>\n\n<nodes>\n${content.map((r, idx) => `<node id="${idx}">${r.title}</node>`).join('\n')}\n</nodes>`,
+    `Given the following nodes of a knowledge graph, find any knowledge graph nodes of the same entity and combine them. Just return nodes that needs to be combined. The nodes are of the following type:\n<type>${nodeType}</type>\n\n<nodes>\n${content.map((r, idx) => `<node id="${idx}">${r.title}</node>`).join('\n')}\n</nodes>`,
     {
       schema: z.object({
         nodesToMerge: z

@@ -1949,7 +1949,7 @@ describe('mergeContent', () => {
   it('Should merge duplicated content', async () => {
     const processed = await mergeContent({
       content: data,
-      type: 'Laptop - Name and model of the laptop',
+      nodeType: 'Laptop - Name and model of the laptop',
     });
     console.log('PROCESSED', processed);
   });
