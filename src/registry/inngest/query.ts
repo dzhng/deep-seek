@@ -15,9 +15,7 @@ export const run = inngest.createFunction(
     const res = await step.run('search-browse', async () =>
       searchAndBrowse({
         query: preprocessed.objective,
-        nodesToExtract: [
-          `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`,
-        ],
+        nodeType: `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`,
       }),
     );
 
