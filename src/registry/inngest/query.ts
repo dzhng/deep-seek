@@ -1,7 +1,9 @@
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
-import { mergeContent } from '@/registry/internet/merge-content';
-import { searchAndBrowse } from '@/registry/search/search-browse';
+import { browse } from '@/registry/search/browse';
+import { generateQueryQuestions } from '@/registry/search/research';
+import { retrieve } from '@/registry/search/retrieve';
+import { search } from '@/registry/search/search';
 
 export const run = inngest.createFunction(
   { id: 'run-query', name: 'Run query' },
@@ -13,18 +15,27 @@ export const run = inngest.createFunction(
       preprocessPrompt({ userPrompt: event.data.prompt }),
     );
 
+    const queryRes = await step.run('search', async () => {
+      const query = await generateQueryQuestions(preprocessed.objective);
+      const results = await search(query);
+      return browse({ results });
+    });
+
     const nodeType = `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`;
-    const browseRes = await step.run('search-browse', async () =>
-      searchAndBrowse({
-        query: preprocessed.objective,
+    const retrieveRes = await step.run('retrieve', async () =>
+      retrieve({
+        results: queryRes,
         nodeType,
       }),
     );
 
-    const merged = await step.run('merge-content', async () =>
-      mergeContent({ content: browseRes, nodeType }),
-    );
-
     // now iterate through each item and get all data for fields
+    const enrichedRes = await step.run('enrich', async () => {
+      for (const res of retrieveRes) {
+        for (const field of preprocessed.fields) {
+          // see if the answer is in the data found for that item already
+        }
+      }
+    });
   },
 );

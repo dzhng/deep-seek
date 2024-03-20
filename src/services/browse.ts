@@ -3,7 +3,7 @@ import ky from 'ky';
 const BrowseApiEndpoint = 'https://browse-api.vercel.app';
 const BrowseApiToken = process.env.BROWSE_API_TOKEN ?? '';
 
-export type BrowseResults = {
+export type BrowseResult = {
   url: string;
   title?: string;
   content: string;
@@ -14,14 +14,14 @@ export async function browse(params: {
   url: string;
   maxContentLen?: number;
   slowFallback?: boolean;
-}): Promise<BrowseResults | undefined> {
+}): Promise<BrowseResult | undefined> {
   try {
     const res = await ky(`${BrowseApiEndpoint}/api/markdown`, {
       searchParams: { token: BrowseApiToken, ...params },
       // browse api endpoint has timeout of 5 min
       timeout: 300_000,
     });
-    return { url: params.url, ...res.json<BrowseResults>() };
+    return { url: params.url, ...res.json<BrowseResult>() };
   } catch (e: any) {
     console.error('Error calling browse endpoint', e.message);
     return;

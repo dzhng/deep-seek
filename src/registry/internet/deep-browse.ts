@@ -1,6 +1,6 @@
 import { compact, uniqBy } from 'lodash';
 
-import { browse, BrowseResults } from '@/services/browse';
+import { browse, BrowseResult } from '@/services/browse';
 import { normalizeUrl } from '@/lib/url';
 import { extractUrls } from '@/registry/internet/extract-urls';
 
@@ -27,7 +27,7 @@ export async function deepBrowse({
   preserveOrigin?: boolean;
   // the minumim relevance score between 0 - 1 that's required for a follow on browse
   minRelevance?: number;
-}): Promise<BrowseResults[]> {
+}): Promise<BrowseResult[]> {
   const normalizedUrl = normalizeUrl(initialUrl);
   const res = await browse({
     url: normalizedUrl,

@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { z } from 'zod';
 import { RecursiveCharacterTextSplitter } from 'zod-gpt';
 
-import { BrowseResults } from '@/services/browse';
+import { BrowseResult } from '@/services/browse';
 import { gpt4TurboCompletion, sonnetCompletion } from '@/services/llm';
 import { MaxContentLength } from '@/lib/const';
 
@@ -53,7 +53,7 @@ export async function generateQueryQuestions(query: string) {
 export async function generateAnswer(
   objective: string,
   plan: string[],
-  contents: BrowseResults[],
+  contents: BrowseResult[],
   events?: EventEmitter,
 ): Promise<string> {
   const textSplitter = new RecursiveCharacterTextSplitter({

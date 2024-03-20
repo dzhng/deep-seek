@@ -4,7 +4,8 @@ import { z } from 'zod';
 
 import { gpt3xlCompletion, sonnetCompletion } from '@/services/llm';
 import { UrlResult } from '@/registry/internet/extract-urls';
-import { SearchResult } from '@/registry/search/search-browse';
+
+import { SearchResult } from './search';
 
 export async function rankSearchResults(
   results: SearchResult[],
