@@ -58,11 +58,11 @@ async function search({
 
 export async function searchAndBrowse({
   query,
-  nodesToExtract,
+  nodeType,
 }: {
   query: string;
   // describe the type of nodes to extract for building the result knowledge graph
-  nodesToExtract?: string[];
+  nodeType?: string;
 }) {
   const { objective, queries } = await generateQueryQuestions(query);
   const searchResults = await search({ objective, queries });
@@ -139,7 +139,7 @@ export async function searchAndBrowse({
       const res = await extractContent({
         page: r,
         query: r.query ?? 'Extract all relevant content',
-        nodesToExtract,
+        nodeType,
       });
       return res.map(content => ({ ...content, url: r.url }));
     }),

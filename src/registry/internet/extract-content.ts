@@ -52,15 +52,15 @@ export function processContent(content: string): {
 export async function extractContent({
   page,
   query,
-  nodesToExtract,
+  nodeType,
 }: {
   page: BrowseResults;
   query: string;
-  nodesToExtract?: string[];
+  nodeType?: string;
 }): Promise<ContentResult[]> {
   const processed = processContent(page.content);
   const { data } = await completion(
-    `Given the following page content, extract any relevant text from the page that can be used to answer the following query:\n<query>${query}</query>\n\nThe content will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Extract as much text as possible, make sure there's enough context that the text extracted makes sense on its own. The text extracted will form nodes on a knowledge graph.${nodesToExtract && nodesToExtract.length ? ` Make sure the types of content extracted is one of the following:\n<types>\n${nodesToExtract.map(n => `<type>${n}</type>`).join('\n')}\n</types>` : ''}\n\nPage content:\n<page>\n<title>\n${page.title}\n<title>\n<content>\n${processed.content}\n</content>\n</page>`,
+    `Given the following page content, extract any relevant text from the page that can be used to answer the following query:\n<query>${query}</query>\n\nThe content will be marked by markers that looks like this: <m>1</m>, select the text in between 2 markers to extract it. Make sure the content extracted is comprehensive enough that it can makes sense on its own. The text extracted should contain detailed information about the query. The text extracted will form nodes on a knowledge graph.${nodeType ? ` Make sure the extracted content is of this type:\n<type>${nodeType}</type>` : ''}\n\nPage content:\n<page>\n<title>\n${page.title}\n<title>\n<content>\n${processed.content}\n</content>\n</page>`,
     {
       schema: z.object({
         markers: z
