@@ -33,7 +33,8 @@ export const run = inngest.createFunction(
     const enrichedRes = await step.run('enrich', async () => {
       for (const res of retrieveRes) {
         for (const field of preprocessed.fields) {
-          // see if the answer is in the data found for that item already
+          // see if the answer is in the content for that item already
+          // if answer is not in content, do a seperate search to find the content
         }
       }
     });
