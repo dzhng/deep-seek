@@ -1,7 +1,7 @@
 import { flatten } from 'lodash';
 import { z } from 'zod';
 
-import { BrowseResults } from '@/services/browse';
+import { BrowseResult } from '@/services/browse';
 import { haikuCompletion } from '@/services/llm';
 import { splitSentence } from '@/lib/sentence-splitter';
 
@@ -54,7 +54,7 @@ export async function extractContent({
   query,
   nodeType,
 }: {
-  page: BrowseResults;
+  page: BrowseResult;
   query: string;
   nodeType?: string;
 }): Promise<ContentResult[]> {

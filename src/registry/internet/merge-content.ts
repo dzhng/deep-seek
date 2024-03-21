@@ -1,3 +1,4 @@
+import { flatten } from 'lodash';
 import { z } from 'zod';
 
 import { haikuCompletion } from '@/services/llm';
@@ -8,13 +9,15 @@ const SystemPrompt = `You are an expert AI agent tasked with browsing and classi
 const completion: typeof haikuCompletion = (prompt, opt) =>
   haikuCompletion(prompt, { ...opt, systemMessage: SystemPrompt });
 
+export type ContentResultWithUrls = ContentResult & { urls: string[] };
+
 export async function mergeContent({
   content,
   nodeType,
 }: {
-  content: ContentResult[];
+  content: ContentResultWithUrls[];
   nodeType: string;
-}): Promise<ContentResult[]> {
+}): Promise<ContentResultWithUrls[]> {
   const { data } = await completion(
     `Given the following nodes of a knowledge graph, find any knowledge graph nodes of the same entity and combine them. Just return nodes that needs to be combined. The nodes are of the following type:\n<type>${nodeType}</type>\n\n<nodes>\n${content.map((r, idx) => `<node id="${idx}">${r.title}</node>`).join('\n')}\n</nodes>`,
     {
@@ -38,12 +41,13 @@ export async function mergeContent({
     },
   );
 
-  const mergedContent: ContentResult[] = [];
+  const mergedContent: (ContentResult & { urls: string[] })[] = [];
   for (const node of data.nodesToMerge) {
-    const mergedNode: ContentResult = {
+    const mergedNode = {
       reason: node.reason,
       title: node.title,
       text: node.nodeIds.map(id => content[Number(id)].text).join('\n---\n'),
+      urls: flatten(node.nodeIds.map(id => content[Number(id)].urls)),
     };
     mergedContent.push(mergedNode);
   }

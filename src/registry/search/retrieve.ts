@@ -1,11 +1,11 @@
 import { compact, flatten } from 'lodash';
 
 import { BrowseResult } from '@/services/browse';
+import { extractContent } from '@/registry/internet/extract-content';
 import {
-  ContentResult,
-  extractContent,
-} from '@/registry/internet/extract-content';
-import { mergeContent } from '@/registry/internet/merge-content';
+  ContentResultWithUrls,
+  mergeContent,
+} from '@/registry/internet/merge-content';
 
 export async function retrieve({
   results,
@@ -13,7 +13,7 @@ export async function retrieve({
 }: {
   results: (BrowseResult & { query: string | null })[];
   nodeType: string;
-}): Promise<ContentResult[]> {
+}): Promise<ContentResultWithUrls[]> {
   // go through all the browse results and extract content to build knowledge graph
   const contentRes = await Promise.allSettled(
     results.map(async r => {
@@ -22,7 +22,7 @@ export async function retrieve({
         query: r.query ?? 'Extract all relevant content',
         nodeType,
       });
-      return res.map(content => ({ ...content, url: r.url }));
+      return res.map(content => ({ ...content, urls: [r.url] }));
     }),
   );
 
