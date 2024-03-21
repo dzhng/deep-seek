@@ -79,7 +79,9 @@ export async function extractContent({
               ),
           })
           .array()
-          .describe('Markers to select to extract the text.'),
+          .describe(
+            'Markers to select to extract the text. Return empty array if no relevant text is found in the content.',
+          ),
       }),
       autoSlice: true,
       minimumResponseTokens: 2000,

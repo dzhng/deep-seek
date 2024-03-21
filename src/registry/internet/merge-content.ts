@@ -37,7 +37,6 @@ export async function mergeContent({
       minimumResponseTokens: 2000,
     },
   );
-  console.log('DATA', JSON.stringify(data, null, 2));
 
   const mergedContent: ContentResult[] = [];
   for (const node of data.nodesToMerge) {

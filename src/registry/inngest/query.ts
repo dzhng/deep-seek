@@ -1,5 +1,6 @@
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
+import { aggregateContent } from '@/registry/internet/aggregate-content';
 import { browse } from '@/registry/search/browse';
 import { generateQueryQuestions } from '@/registry/search/research';
 import { retrieve } from '@/registry/search/retrieve';
@@ -31,12 +32,28 @@ export const run = inngest.createFunction(
 
     // now iterate through each item and get all data for fields
     const enrichedRes = await step.run('enrich', async () => {
+      const ret: { text: string; confidence: number }[][] = [];
       for (const res of retrieveRes) {
+        const row: { text: string; confidence: number }[] = [
+          { text: res.title, confidence: 1 },
+        ];
+
         for (const field of preprocessed.fields) {
           // see if the answer is in the content for that item already
           // if answer is not in content, do a seperate search to find the content
+          const answer = await aggregateContent({
+            content: [res],
+            query: `${field.name} - ${field.description}`,
+          });
+          row.push({ text: answer.answer, confidence: answer.confidence });
         }
+
+        ret.push(row);
       }
+
+      return ret;
     });
+
+    console.log(enrichedRes);
   },
 );
