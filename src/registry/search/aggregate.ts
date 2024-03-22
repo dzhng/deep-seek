@@ -13,7 +13,7 @@ export async function aggregate({
 }): Promise<{
   answer: string;
   confidence: number;
-  sources: { title: string; url: string }[];
+  sources: { title?: string; url: string }[];
 }> {
   // go through all the browse results and extract content to build knowledge graph
   const contentRes = await Promise.allSettled(
@@ -22,7 +22,10 @@ export async function aggregate({
         page: r,
         query: r.query ?? 'Extract all relevant content',
       });
-      return res.map(content => ({ ...content, url: r.url }));
+      return res.map(content => ({
+        ...content,
+        sources: [{ title: r.title, url: r.url }],
+      }));
     }),
   );
 
@@ -33,16 +36,8 @@ export async function aggregate({
   const aggregated = await aggregateContent({ content, query });
   return {
     ...aggregated,
-    sources: compact(
-      aggregated.sources.map(idx => {
-        const record = content[idx];
-        return record
-          ? {
-              title: record.title,
-              url: record.url,
-            }
-          : null;
-      }),
+    sources: flatten(
+      compact(aggregated.sources.map(idx => content[idx]?.sources)),
     ),
   };
 }

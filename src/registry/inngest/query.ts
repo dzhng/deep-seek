@@ -1,7 +1,6 @@
 import { enrichCell } from '@/registry/agent/enrich';
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
-import { aggregateContent } from '@/registry/internet/aggregate-content';
 import { browse } from '@/registry/search/browse';
 import { generateQueryQuestions } from '@/registry/search/research';
 import { retrieve } from '@/registry/search/retrieve';
@@ -37,7 +36,7 @@ export const run = inngest.createFunction(
       const ret: TableCell[][] = [];
       for (const res of retrieveRes) {
         const row: TableCell[] = [
-          { text: res.title, confidence: 1, sources: res.urls },
+          { text: res.title, confidence: 1, sources: res.sources },
         ];
 
         for (const field of preprocessed.fields) {

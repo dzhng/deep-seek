@@ -39,5 +39,9 @@ export async function enrichCell({
     query: expandedQuery.objective,
   });
 
-  return aggregatedAnswer;
+  return {
+    text: aggregatedAnswer.answer,
+    confidence: aggregatedAnswer.confidence,
+    sources: aggregatedAnswer.sources,
+  };
 }
