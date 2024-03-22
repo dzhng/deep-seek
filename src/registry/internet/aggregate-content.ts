@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { haikuCompletion } from '@/services/llm';
-import { ContentResult } from '@/registry/internet/extract-content';
+import { ContentResult } from '@/registry/types';
 
 const SystemPrompt = `You are an expert AI agent tasked with browsing and classifying websites. Follow the user's instructions exactly. Never say common misconceptions, outdated information, lies, fiction, myths, jokes, or memes. The user has an IQ of 200 and require expert level knowledge. Never write any information that is not in the original content.`;
 
@@ -9,11 +9,11 @@ const completion: typeof haikuCompletion = (prompt, opt) =>
   haikuCompletion(prompt, { ...opt, systemMessage: SystemPrompt });
 
 export async function aggregateContent({
-  content,
   query,
+  content,
 }: {
-  content: ContentResult[];
   query: string;
+  content: ContentResult[];
 }): Promise<{ answer: string; sources: number[]; confidence: number }> {
   const { data } = await completion(
     `Given the following nodes of a knowledge graph, return the answer to the following query:\n<query>${query}</query>\n\n<nodes>\n${content.map((r, idx) => `<node id="${idx}">\n<title>${r.title}</title>\n<content>\n${r.text}\n</content>\n</node>`).join('\n')}\n</nodes>`,

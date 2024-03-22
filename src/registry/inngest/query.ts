@@ -1,3 +1,4 @@
+import { enrichCell } from '@/registry/agent/enrich';
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
 import { aggregateContent } from '@/registry/internet/aggregate-content';
@@ -5,8 +6,7 @@ import { browse } from '@/registry/search/browse';
 import { generateQueryQuestions } from '@/registry/search/research';
 import { retrieve } from '@/registry/search/retrieve';
 import { search } from '@/registry/search/search';
-
-type TableCell = { text: string; confidence: number; sources: string[] };
+import { TableCell } from '@/registry/types';
 
 export const run = inngest.createFunction(
   { id: 'run-query', name: 'Run query' },
@@ -41,17 +41,11 @@ export const run = inngest.createFunction(
         ];
 
         for (const field of preprocessed.fields) {
-          // see if the answer is in the content for that item already
-          // if answer is not in content, do a seperate search to find the content
-          const answer = await aggregateContent({
-            content: [res],
+          const cell = await enrichCell({
             query: `${field.name} - ${field.description}`,
+            content: [res],
           });
-          row.push({
-            text: answer.answer,
-            confidence: answer.confidence,
-            sources: res.urls,
-          });
+          row.push(cell);
         }
 
         ret.push(row);

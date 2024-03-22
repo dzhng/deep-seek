@@ -1,7 +1,7 @@
 import { compact, uniqBy } from 'lodash';
 import { z } from 'zod';
 
-import { BrowseResults } from '@/services/browse';
+import { BrowseResult } from '@/services/browse';
 import { gpt3xlCompletion } from '@/services/llm';
 import { ensureAbsolute } from '@/lib/url';
 
@@ -106,7 +106,7 @@ export async function extractUrls({
   direction,
 }: {
   n?: number;
-  page: BrowseResults;
+  page: BrowseResult;
   url: string;
   direction: string;
 }): Promise<UrlResult[]> {

@@ -4,12 +4,7 @@ import { z } from 'zod';
 import { BrowseResult } from '@/services/browse';
 import { haikuCompletion } from '@/services/llm';
 import { splitSentence } from '@/lib/sentence-splitter';
-
-export type ContentResult = {
-  reason: string;
-  title: string;
-  text: string;
-};
+import { ContentResult } from '@/registry/types';
 
 const SystemPrompt = `You are an expert AI agent tasked with browsing and classifying websites. Follow the user's instructions exactly. Never say common misconceptions, outdated information, lies, fiction, myths, jokes, or memes. The user has an IQ of 200 and require expert level knowledge. Never write any information that is not in the original content.`;
 
