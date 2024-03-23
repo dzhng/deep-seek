@@ -2,6 +2,7 @@
 
 import { useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { compact, uniqBy } from 'lodash';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
@@ -71,64 +72,91 @@ export default function Home() {
         </form>
       </Form>
 
-      <hr />
-      <div>
-        {runQuery.data && (
-          <div className="overflow-x-auto">
-            <div className="min-w-full divide-y divide-gray-200">
-              <div className="bg-gray-50">
-                <div className="flex">
-                  {runQuery.data.columns.map((column, index) => (
-                    <div
-                      key={index}
-                      className="w-[400px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                    >
-                      {column.name}
+      {runQuery.data && (
+        <>
+          <hr />
+          <div>
+            <ul className="list-disc pl-5">
+              {uniqBy(
+                compact(
+                  runQuery.data.table.flatMap(row =>
+                    row.flatMap(cell => cell?.sources),
+                  ),
+                ),
+                'url',
+              ).map((source, sourceIndex) => (
+                <li key={sourceIndex}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    {source.url}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <hr />
+          <div>
+            <div className="overflow-x-auto">
+              <div className="min-w-full divide-y divide-gray-200">
+                <div className="bg-gray-50">
+                  <div className="flex">
+                    {runQuery.data.columns.map((column, index) => (
+                      <div
+                        key={index}
+                        className="w-[400px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                      >
+                        {column.name}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="divide-y divide-gray-200 bg-white">
+                  {runQuery.data.table.map((row, rowIndex) => (
+                    <div key={rowIndex} className="flex">
+                      {row.map((cell, cellIndex) => (
+                        <div
+                          key={cellIndex}
+                          className="w-[400px] overflow-hidden whitespace-break-spaces px-6 py-4 text-sm text-gray-500"
+                        >
+                          {cell ? (
+                            <>
+                              <p>{cell.text}</p>
+                              <div>
+                                {cell.sources.map((source, sourceIndex) => (
+                                  <>
+                                    [
+                                    <a
+                                      key={sourceIndex}
+                                      href={source.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-xs text-blue-500"
+                                    >
+                                      {sourceIndex + 1}
+                                    </a>
+                                    ]
+                                  </>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            'N/A'
+                          )}
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="divide-y divide-gray-200 bg-white">
-                {runQuery.data.table.map((row, rowIndex) => (
-                  <div key={rowIndex} className="flex">
-                    {row.map((cell, cellIndex) => (
-                      <div
-                        key={cellIndex}
-                        className="w-[400px] overflow-hidden whitespace-break-spaces px-6 py-4 text-sm text-gray-500"
-                      >
-                        {cell ? (
-                          <>
-                            <p>{cell.text}</p>
-                            <div>
-                              {cell.sources.map((source, sourceIndex) => (
-                                <>
-                                  [
-                                  <a
-                                    key={sourceIndex}
-                                    href={source.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-xs text-blue-500"
-                                  >
-                                    {sourceIndex + 1}
-                                  </a>
-                                  ]
-                                </>
-                              ))}
-                            </div>
-                          </>
-                        ) : (
-                          'N/A'
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </main>
   );
 }
