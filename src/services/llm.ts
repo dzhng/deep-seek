@@ -1,4 +1,9 @@
-import { AnthropicChatApi, ChatRequestMessage, OpenAIChatApi } from 'llm-api';
+import {
+  AnthropicChatApi,
+  ChatRequestMessage,
+  GroqChatApi,
+  OpenAIChatApi,
+} from 'llm-api';
 import { partial } from 'lodash';
 import { z } from 'zod';
 import { chat, completion, RequestOptions, Response } from 'zod-gpt';
@@ -37,9 +42,7 @@ export const gpt4TurboCompletion: Completion = partial(completion, gpt4turbo);
 export const gpt4TurboChat: Chat = partial(chat, gpt4turbo);
 
 export const sonnet = new AnthropicChatApi(
-  {
-    apiKey: process.env.ANTHROPIC_KEY!,
-  },
+  { apiKey: process.env.ANTHROPIC_KEY },
   {
     model: 'claude-3-sonnet-20240229',
     stream: true,
@@ -51,9 +54,7 @@ export const sonnetCompletion: Completion = partial(completion, sonnet);
 export const sonnetChat: Chat = partial(chat, sonnet);
 
 export const haiku = new AnthropicChatApi(
-  {
-    apiKey: process.env.ANTHROPIC_KEY!,
-  },
+  { apiKey: process.env.ANTHROPIC_KEY },
   {
     model: 'claude-3-haiku-20240307',
     stream: true,
@@ -65,9 +66,7 @@ export const haikuCompletion: Completion = partial(completion, haiku);
 export const haikuChat: Chat = partial(chat, haiku);
 
 export const opus = new AnthropicChatApi(
-  {
-    apiKey: process.env.ANTHROPIC_KEY!,
-  },
+  { apiKey: process.env.ANTHROPIC_KEY },
   {
     model: 'claude-3-opus-20240229',
     stream: true,
@@ -77,3 +76,15 @@ export const opus = new AnthropicChatApi(
 );
 export const opusCompletion: Completion = partial(completion, opus);
 export const opusChat: Chat = partial(chat, opus);
+
+export const mixtral = new GroqChatApi(
+  { apiKey: process.env.GROQ_KEY! },
+  {
+    model: 'mixtral-8x7b-32768',
+    stream: false,
+    temperature: 0,
+    contextSize: 32_000,
+  },
+);
+export const mixtralCompletion: Completion = partial(completion, mixtral);
+export const mixtralChat: Chat = partial(chat, mixtral);
