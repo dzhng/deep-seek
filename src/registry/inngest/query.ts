@@ -42,7 +42,7 @@ export const run = inngest.createFunction(
         promises.push(() =>
           step.run(`enrich-cell-${row}-${column}`, async () => {
             const cell = await enrichCell({
-              query: `${field.name} - ${field.description}`,
+              query: `${retrieveRes[row].title} - ${field.name} - ${field.description}`,
               content: [retrieveRes[row]],
             });
             return cell;
