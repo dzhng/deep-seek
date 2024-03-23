@@ -20,9 +20,9 @@ export async function enrichCell({
     content,
   });
 
-  if (!answer.answer || answer.answer.length === 0 || answer.confidence > 0.3) {
+  if (answer.answer && answer.confidence > 0.3) {
     return {
-      text: answer.answer!,
+      text: answer.answer,
       confidence: answer.confidence,
       sources: flatten(
         compact(answer.sources.map(idx => content[idx]?.sources)),
