@@ -15,14 +15,16 @@ export type SearchResult = {
 export async function search({
   objective,
   queries,
+  isNeural,
 }: {
   objective: string;
   queries: string[];
+  isNeural?: boolean;
 }): Promise<SearchResult[]> {
   const searchRes = await Promise.allSettled(
     queries.slice(0, 6).map(async query => {
       const searchResult = await metaphor.search(query, {
-        type: 'keyword',
+        type: isNeural ? 'neural' : 'keyword',
         useAutoprompt: true,
         numResults: 3,
       });

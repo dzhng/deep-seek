@@ -24,6 +24,7 @@ export const queryRouter = router({
       const query = await generateQueryQuestions({
         query: preprocessed.objective,
       });
+      console.log('Preprocessed query', query);
       const results = await search(query);
       const browseRes = await browse({ results });
 
