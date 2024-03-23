@@ -1,3 +1,5 @@
+import pall from 'p-all';
+
 import { enrichCell } from '@/registry/agent/enrich';
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
@@ -62,6 +64,11 @@ export const run = inngest.createFunction(
       }
     }
 
-    await Promise.allSettled(promises);
+    await pall(
+      promises.map(p => () => p),
+      { concurrency: 10, stopOnError: false },
+    );
+
+    return table;
   },
 );

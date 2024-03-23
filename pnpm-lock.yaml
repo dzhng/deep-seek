@@ -89,9 +89,9 @@ dependencies:
   normalize-url:
     specifier: ^8.0.0
     version: 8.0.1
-  p-map:
-    specifier: ^7.0.1
-    version: 7.0.1
+  p-all:
+    specifier: ^5.0.0
+    version: 5.0.0
   p-throttle:
     specifier: ^6.1.0
     version: 6.1.0
@@ -6154,6 +6154,13 @@ packages:
       type-check: 0.4.0
     dev: true
 
+  /p-all@5.0.0:
+    resolution: {integrity: sha512-pofqu/1FhCVa+78xNAptCGc9V45exFz2pvBRyIvgXkNM0Rh18Py7j8pQuSjA+zpabI46v9hRjNWmL9EAFcEbpw==}
+    engines: {node: '>=16'}
+    dependencies:
+      p-map: 6.0.0
+    dev: false
+
   /p-limit@3.1.0:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
     engines: {node: '>=10'}
@@ -6168,9 +6175,9 @@ packages:
       p-limit: 3.1.0
     dev: true
 
-  /p-map@7.0.1:
-    resolution: {integrity: sha512-2wnaR0XL/FDOj+TgpDuRb2KTjLnu3Fma6b1ZUwGY7LcqenMcvP/YFpjpbPKY6WVGsbuJZRuoUz8iPrt8ORnAFw==}
-    engines: {node: '>=18'}
+  /p-map@6.0.0:
+    resolution: {integrity: sha512-T8BatKGY+k5rU+Q/GTYgrEf2r4xRMevAN5mtXc2aPc4rS1j3s+vWTaO2Wag94neXuCAUAs8cxBL9EeB5EA6diw==}
+    engines: {node: '>=16'}
     dev: false
 
   /p-throttle@6.1.0:
