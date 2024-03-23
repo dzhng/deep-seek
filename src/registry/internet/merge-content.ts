@@ -17,7 +17,7 @@ export async function mergeContent({
   nodeType: string;
 }): Promise<ContentResultWithSources[]> {
   const { data } = await completion(
-    `Given the following nodes of a knowledge graph, find any knowledge graph nodes of the same entity and combine them. Just return nodes that needs to be combined. The nodes are of the following type:\n<type>${nodeType}</type>\n\n<nodes>\n${content.map((r, idx) => `<node id="${idx}">${r.title}</node>`).join('\n')}\n</nodes>`,
+    `Given the following nodes of a knowledge graph, find any knowledge graph nodes of the same entity and combine them. Just return nodes that needs to be combined. The nodes are of the following type:\n<type>${nodeType}</type>\n\n<nodes>\n${content.map((r, idx) => `<node id="${idx}">\n<name>${r.title}</name>\n<description>${r.reason}</description>\n</node>`).join('\n')}\n</nodes>`,
     {
       schema: z.object({
         nodesToMerge: z

@@ -2,6 +2,7 @@ import { compact, flatten } from 'lodash';
 
 import { BrowseResult } from '@/services/browse';
 import { extractContent } from '@/registry/internet/extract-content';
+import { filterContent } from '@/registry/internet/filter-content';
 import { mergeContent } from '@/registry/internet/merge-content';
 import { ContentResultWithSources } from '@/registry/types';
 
@@ -31,5 +32,7 @@ export async function retrieve({
     compact(contentRes.map(r => (r.status === 'fulfilled' ? r.value : null))),
   );
 
-  return mergeContent({ content, nodeType });
+  const merged = await mergeContent({ content, nodeType });
+  const filtered = await filterContent({ content: merged, nodeType });
+  return filtered;
 }
