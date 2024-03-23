@@ -66,8 +66,8 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.2
   llm-api:
-    specifier: ^1.4.1
-    version: 1.4.1
+    specifier: ^1.5.0
+    version: 1.5.0
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -150,8 +150,8 @@ dependencies:
     specifier: ^3.22.4
     version: 3.22.4
   zod-gpt:
-    specifier: ^0.14.0
-    version: 0.14.0(llm-api@1.4.1)(zod@3.22.4)
+    specifier: ^0.15.0
+    version: 0.15.0(llm-api@1.5.0)(zod@3.22.4)
 
 devDependencies:
   '@ianvs/prettier-plugin-sort-imports':
@@ -5154,8 +5154,8 @@ packages:
       wrap-ansi: 9.0.0
     dev: true
 
-  /llm-api@1.4.1:
-    resolution: {integrity: sha512-KotZFsR9Ojwvlomi6WaSLsN7r9KoCFojUIzWB/dkpW/XU/R5wKL76PpPcASfD7nrir4zRRWgJj0Z1vGhlhtRlQ==}
+  /llm-api@1.5.0:
+    resolution: {integrity: sha512-DKg7tYd073QCA3tk8S4g/PVlu+bilXH9nXU3HWlMtruQ2V/et2KoQp+O/WZyn4h5eNB2ZfjdL0JAUUuJMgt6tQ==}
     dependencies:
       '@anthropic-ai/sdk': 0.16.1
       '@aws-sdk/client-bedrock-runtime': 3.535.0
@@ -7894,16 +7894,16 @@ packages:
     resolution: {integrity: sha512-N+d4UJSJbt/R3wqY7Coqs5pcV0aUj2j9IaQ3rNj9bVCLld8tTGKRa2USARjnvZJWVx1NDmQev8EknoczaOQDOA==}
     dev: false
 
-  /zod-gpt@0.14.0(llm-api@1.4.1)(zod@3.22.4):
-    resolution: {integrity: sha512-UFSPGYc8hxo34wsTKpDPEqJQGDNCzpczcCzNm5Cjzk8+2QmjgsijoaZdGUm/sH+1Ax5AFr6ezYc/IMBSch7ReA==}
+  /zod-gpt@0.15.0(llm-api@1.5.0)(zod@3.22.4):
+    resolution: {integrity: sha512-jgkZe4Y721zOB1W+XudLc3AtddpoLOaXl2Rnf3eL7UApaJ+gJuCjxzzDaxI7NfQfxkSzi8PztJa3xAMb2J11Bw==}
     peerDependencies:
-      llm-api: ^1.4.1
+      llm-api: ^1.5.0
       zod: ^3.22.4
     dependencies:
       debug: 4.3.4
       jsonic: 1.0.1
       jsonrepair: 3.6.0
-      llm-api: 1.4.1
+      llm-api: 1.5.0
       lodash: 4.17.21
       tsx: 4.7.1
       type-fest: 4.12.0

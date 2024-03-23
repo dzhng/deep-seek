@@ -38,7 +38,7 @@
     "inngest": "^3.15.4",
     "jstoxml": "^5.0.1",
     "ky": "^1.2.0",
-    "llm-api": "^1.4.1",
+    "llm-api": "^1.5.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.338.0",
     "metaphor-node": "^1.0.30",
@@ -66,7 +66,7 @@
     "wink-eng-lite-web-model": "^1.5.2",
     "wink-nlp": "^1.14.3",
     "zod": "^3.22.4",
-    "zod-gpt": "^0.14.0"
+    "zod-gpt": "^0.15.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
