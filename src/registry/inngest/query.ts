@@ -31,28 +31,38 @@ export const run = inngest.createFunction(
       }),
     );
 
-    // now iterate through each item and get all data for fields
-    const enrichedRes = await step.run('enrich', async () => {
-      const ret: TableCell[][] = [];
-      for (const res of retrieveRes) {
-        const row: TableCell[] = [
-          { text: res.title, confidence: 1, sources: res.sources },
-        ];
+    const promises: Promise<unknown>[] = [];
+    const table: (TableCell | undefined)[][] = Array(retrieveRes.length)
+      .fill(undefined)
+      // add an extra column for the initial value
+      .map(() => Array(preprocessed.fields.length + 1).fill(undefined));
 
-        for (const field of preprocessed.fields) {
+    // put in the first column
+    for (let row = 0; row < retrieveRes.length; row++) {
+      const cell: TableCell = {
+        text: retrieveRes[row].title,
+        confidence: 1,
+        sources: retrieveRes[row].sources,
+      };
+      table[row][0] = cell;
+    }
+
+    // retrieve all other cells async
+    for (let row = 0; row < retrieveRes.length; row++) {
+      for (let column = 0; column < preprocessed.fields.length; column++) {
+        const field = preprocessed.fields[column];
+        const promise = step.run(`enrich-cell-${row}-${column}`, async () => {
           const cell = await enrichCell({
             query: `${field.name} - ${field.description}`,
-            content: [res],
+            content: [retrieveRes[row]],
           });
-          row.push(cell);
-        }
+          table[row][column + 1] = cell;
+        });
 
-        ret.push(row);
+        promises.push(promise);
       }
+    }
 
-      return ret;
-    });
-
-    console.log(enrichedRes);
+    await Promise.allSettled(promises);
   },
 );
