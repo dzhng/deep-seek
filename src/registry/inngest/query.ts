@@ -31,21 +31,7 @@ export const run = inngest.createFunction(
       }),
     );
 
-    const promises: (() => Promise<unknown>)[] = [];
-    const table: (TableCell | undefined)[][] = Array(retrieveRes.length)
-      .fill(undefined)
-      // add an extra column for the initial value
-      .map(() => Array(preprocessed.fields.length + 1).fill(undefined));
-
-    // put in the first column
-    for (let row = 0; row < retrieveRes.length; row++) {
-      const cell: TableCell = {
-        text: retrieveRes[row].title,
-        confidence: 1,
-        sources: retrieveRes[row].sources,
-      };
-      table[row][0] = cell;
-    }
+    const promises: (() => Promise<TableCell | undefined>)[] = [];
 
     // retrieve all other cells async
     for (let row = 0; row < retrieveRes.length; row++) {
@@ -57,14 +43,32 @@ export const run = inngest.createFunction(
               query: `${field.name} - ${field.description}`,
               content: [retrieveRes[row]],
             });
-            table[row][column + 1] = cell;
             return cell;
           }),
         );
       }
     }
 
-    await pall(promises, { concurrency: 10, stopOnError: false });
+    const cells = await pall(promises, { concurrency: 10, stopOnError: false });
+
+    const table: (TableCell | undefined)[][] = Array(retrieveRes.length)
+      .fill(undefined)
+      // add an extra column for the initial value
+      .map(() => Array(preprocessed.fields.length + 1).fill(undefined));
+
+    // construct the table from outputs
+    for (let row = 0; row < retrieveRes.length; row++) {
+      const cell: TableCell = {
+        text: retrieveRes[row].title,
+        confidence: 1,
+        sources: retrieveRes[row].sources,
+      };
+      table[row][0] = cell;
+      for (let column = 0; column < preprocessed.fields.length; column++) {
+        table[row][column + 1] =
+          cells[row * preprocessed.fields.length + column];
+      }
+    }
 
     return table;
   },

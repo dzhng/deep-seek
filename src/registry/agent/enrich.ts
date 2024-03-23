@@ -45,11 +45,3 @@ export async function enrichCell({
     sources: aggregatedAnswer.sources,
   };
 }
-
-export async function enrichRow({
-  fields,
-  content,
-}: {
-  fields: { name: string; description: string }[];
-  content: ContentResultWithSources[];
-}): Promise<TableCell> {}
