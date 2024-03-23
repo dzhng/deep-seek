@@ -31,7 +31,7 @@ export const run = inngest.createFunction(
       }),
     );
 
-    const promises: Promise<unknown>[] = [];
+    const promises: (() => Promise<unknown>)[] = [];
     const table: (TableCell | undefined)[][] = Array(retrieveRes.length)
       .fill(undefined)
       // add an extra column for the initial value
@@ -51,23 +51,20 @@ export const run = inngest.createFunction(
     for (let row = 0; row < retrieveRes.length; row++) {
       for (let column = 0; column < preprocessed.fields.length; column++) {
         const field = preprocessed.fields[column];
-        const promise = step.run(`enrich-cell-${row}-${column}`, async () => {
-          const cell = await enrichCell({
-            query: `${field.name} - ${field.description}`,
-            content: [retrieveRes[row]],
-          });
-          table[row][column + 1] = cell;
-          return cell;
-        });
-
-        promises.push(promise);
+        promises.push(() =>
+          step.run(`enrich-cell-${row}-${column}`, async () => {
+            const cell = await enrichCell({
+              query: `${field.name} - ${field.description}`,
+              content: [retrieveRes[row]],
+            });
+            table[row][column + 1] = cell;
+            return cell;
+          }),
+        );
       }
     }
 
-    await pall(
-      promises.map(p => () => p),
-      { concurrency: 10, stopOnError: false },
-    );
+    await pall(promises, { concurrency: 10, stopOnError: false });
 
     return table;
   },
