@@ -19,7 +19,7 @@ export async function aggregateContent({
       schema: z.object({
         answer: z
           .string()
-          .nullable()
+          .nullish()
           .describe(
             'Answer to the query based on the given sources. Keep it to one paragraph max. ONLY return if the answer is found in the provided content. Return just the answer, no prose',
           ),
@@ -31,7 +31,7 @@ export async function aggregateContent({
           ),
         guess: z
           .string()
-          .nullable()
+          .nullish()
           .describe(
             "Your best guess as to what the answer is based on your understanding of the world. It doesn't matter that it is not in the content given, just give a direct guess, the user will know that it is a guess. ONLY return this if you could not find the answer in the given content. Return just the answer, no prose. If you don't have a guess, don't return anything.",
           ),
