@@ -36,10 +36,10 @@ export default function Home() {
   const onSubmit = useCallback(
     (values: z.infer<typeof formSchema>) => {
       runQuery.mutate({ prompt: values.prompt });
-      form.reset();
+      //form.reset();
       toast('Submitted');
     },
-    [form, runQuery],
+    [runQuery],
   );
 
   return (
@@ -50,6 +50,7 @@ export default function Home() {
           <FormField
             control={form.control}
             name="prompt"
+            disabled={runQuery.isLoading}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Query</FormLabel>
@@ -74,35 +75,57 @@ export default function Home() {
       <div>
         {runQuery.data && (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
+            <div className="min-w-full divide-y divide-gray-200">
+              <div className="bg-gray-50">
+                <div className="flex">
                   {runQuery.data.columns.map((column, index) => (
-                    <th
+                    <div
                       key={index}
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                      className="w-[400px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                     >
                       {column.name}
-                    </th>
+                    </div>
                   ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
+                </div>
+              </div>
+              <div className="divide-y divide-gray-200 bg-white">
                 {runQuery.data.table.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
+                  <div key={rowIndex} className="flex">
                     {row.map((cell, cellIndex) => (
-                      <td
+                      <div
                         key={cellIndex}
-                        className="whitespace-nowrap px-6 py-4 text-sm text-gray-500"
+                        className="w-[400px] overflow-hidden whitespace-break-spaces px-6 py-4 text-sm text-gray-500"
                       >
-                        {cell ? cell.text : 'N/A'}
-                      </td>
+                        {cell ? (
+                          <>
+                            <p>{cell.text}</p>
+                            <div>
+                              {cell.sources.map((source, sourceIndex) => (
+                                <>
+                                  [
+                                  <a
+                                    key={sourceIndex}
+                                    href={source.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs text-blue-500"
+                                  >
+                                    {sourceIndex + 1}
+                                  </a>
+                                  ]
+                                </>
+                              ))}
+                            </div>
+                          </>
+                        ) : (
+                          'N/A'
+                        )}
+                      </div>
                     ))}
-                  </tr>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           </div>
         )}
       </div>
