@@ -60,9 +60,52 @@ export default function Home() {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button
+            className="w-[140px]"
+            type="submit"
+            disabled={runQuery.isLoading}
+          >
+            {runQuery.isLoading ? 'Researching...' : 'Submit'}
+          </Button>
         </form>
       </Form>
+
+      <hr />
+      <div>
+        {runQuery.data && (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  {runQuery.data.columns.map((column, index) => (
+                    <th
+                      key={index}
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                    >
+                      {column.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 bg-white">
+                {runQuery.data.table.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className="whitespace-nowrap px-6 py-4 text-sm text-gray-500"
+                      >
+                        {cell ? cell.text : 'N/A'}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </main>
   );
 }

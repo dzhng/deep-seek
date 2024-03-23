@@ -73,7 +73,10 @@ export const queryRouter = router({
         }
       }
 
-      return table;
+      return {
+        columns: [preprocessed.mainField, ...preprocessed.fields],
+        table,
+      };
     }),
   queue: protectedProcedure
     .input(
