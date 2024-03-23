@@ -5,9 +5,9 @@ import { search } from '@/registry/search/search';
 
 describe('searchAndBrowse', () => {
   it('It should extract the right content for a search result', async () => {
-    const { objective, queries } = await generateQueryQuestions(
-      'Best laptops under $2000',
-    );
+    const { objective, queries } = await generateQueryQuestions({
+      query: 'Best laptops under $2000',
+    });
     const content = await search({
       objective,
       queries,

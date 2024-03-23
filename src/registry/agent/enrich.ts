@@ -31,7 +31,7 @@ export async function enrichCell({
   }
 
   // if confidence is low, retrieve and augment the answer with web data
-  const expandedQuery = await generateQueryQuestions(query);
+  const expandedQuery = await generateQueryQuestions({ query, maxQueries: 1 });
   const searchResults = await search(expandedQuery);
   const browseResults = await browse({ results: searchResults });
   const aggregatedAnswer = await aggregate({
@@ -40,7 +40,7 @@ export async function enrichCell({
   });
 
   return {
-    text: aggregatedAnswer.answer,
+    text: aggregatedAnswer.answer ?? '',
     confidence: aggregatedAnswer.confidence,
     sources: aggregatedAnswer.sources,
   };

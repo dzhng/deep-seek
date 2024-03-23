@@ -130,7 +130,11 @@ const data = [
       '❌ **You only have the budget for the cheapest MacBook:** The MacBook Air 13-inch (M3) comes with a new, lower price, but the M2 model ([also in this list](#section-the-best-student-laptop)) has also dropped in price, making that the cheapest MacBook you can buy.\n' +
       '**❌ You want a lot of ports:** The MacBook Air (M3) once again comes with only two Thunderbolt ports. If you need more ports, consider the [MacBook Pro 16-inch below](#section-the-best-productivity-laptop) instead.\n' +
       '❌ **You want a bigger screen:** The 13-inch screen of the new MacBook Air makes it nice and portable, but some people may find it a bit too small to work on - in that case, you should consider the 15-inch model instead.',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -180,7 +184,11 @@ const data = [
       '**Battery life:** While Chromebooks on average get about 10 hours of life on a fully-charged battery, the Lenovo Duet 5 lasted a huge 16 hours. This is a drop from the previous model (which managed over 20 hours), which is disappointing.\n' +
       "**Value for money:** As far as Chromebooks and 2-in-1 laptops go, this is hands down the best value you're going to find in a portable device of its kind. When it launched, it was more expensive than its predecessor, but over time, its price has dropped, making it superb value for money.\n" +
       '**Read the full review:** [Lenovo IdeaPad Duet 5 Chromebook](https://www.techradar.com/reviews/lenovo-ideapad-duet-5-chromebook)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -229,7 +237,11 @@ const data = [
       "**Battery life:** In our review we found the Acer Aspire 5 lasted around six and a half hours on battery. While this isn't awful, there are cheap laptops out there, especially Chromebooks, which offer much longer battery life. So, you'll likely want to bring its charging cable with you when you're out and about.\n" +
       '**Value for money:** As you might expect from a laptop we consider to be the best budget device money can buy, the Acer Aspire 5 offers excellent value for money, going for around $600 in the US and £500 in the UK. Even at that low price you get good performance, a nice design and 1080p screen.\n' +
       '**Read the full review:** [Acer Aspire 5 (2022)](https://www.techradar.com/reviews/acer-aspire-5-2022)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -277,7 +289,11 @@ const data = [
       "**Battery life:** In our tests, the MacBook Air 13-inch (M2) lasted a huge 16 hours on battery while playing a 1080p video – that's a 30-minute improvement over the [MacBook Pro 13-inch (M2, 2022)](https://www.techradar.com/reviews/apple-macbook-pro-13-inch-m2-2022), and five hours longer than the [MacBook Air (M1, 2020)](https://www.techradar.com/reviews/apple-macbook-air-m12020). This laptop will last you throughout an entire workday or on a long-haul flight, and then some. It's not the longest life you'll find in a MacBook - the new MacBook Pro 16-inch (M3 Max) almost hits 24 hours on a single charge.\n" +
       "**Value for money:** The MacBook Air launched at $1,199 / £1,249 / AU$1,899, a substantial leap from the older MacBook Air’s launch price. However, with the launch of the M3 MacBook Air, the 13-inch MacBook Air (M2) is now officially on sale for $999 / $999 / AU$1,599 - making it much better value for money, and arguably selling for the price it should have launched at. Even better, if you're a student with an appropriate ID, you can get it for $899 / £899 / AU$1,439\\. For that price you're not going to get a better laptop.\n" +
       '**Read the full review:** [MacBook Air 13-inch (M2)](https://www.techradar.com/reviews/apple-macbook-air-m2-2022)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -327,7 +343,11 @@ const data = [
       "**Battery life:** In our battery life benchmark, we found the XPS 13 Plus lasted six hours and 20 minutes. These days, we'd expect most modern laptops (apart from gaming laptops) to last around 10 hours at least, so this is certainly disappointing. With a few tweaks, it'll get you through a workday, but we wouldn't want to go too far without a charger.\n" +
       "**Value for money:** Starting at $1,249 / £1,198.99 / AU$2,398, this is not a cheap laptop, but nor is it outrageously priced, especially when you compare it to the base model of the MacBook Air 13-inch (M3). The Dell XPS 13 Plus base model comed with 16GB RAM and 512GB SSD storage, both twice the amount that the base MacBook Air comes with. For the specs and performance you get, you'll be very happy if you can afford it - and keep an eye out around Black Friday, as Dell often has some of the best price cuts around.\n" +
       '**Read the full review:** [Dell XPS 13 Plus](https://www.techradar.com/computing/laptops/dell-xps-13-plus-2023-review-still-the-odd-one-out-in-the-xps-family)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -377,7 +397,11 @@ const data = [
       "**Battery life:** Usually the battery lives of Chromebooks are one of their main selling points, but in our tests, the Acer Chromebook Plus 515 only lasted a disappointing five hours and 13 minutes. While that's not ridiculously low, it is surprisingly short for a Chromebook, which is a shame.\n" +
       "**Value for money:** The Acer Chromebook Plus 515 offers exceptional value for money. Selling for $399.99 / £399.99, it's an affordable laptop that punches well above its weight. While we recommend it for working from home, it's also a great choice for students or anyone who wants a budget laptop but doesn't want to make compromises on performance.\n" +
       '**Read the full review:** [Acer Chromebook Plus 515](https://www.techradar.com/computing/chromebooks/acer-chromebook-plus-515-review-a-solid-first-step-in-the-plus-line)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -425,7 +449,11 @@ const data = [
       `**Battery life:** Apple promises up to 22 hours of video playback, and 15 hours of web browsing on a single charge for the MacBook Pro 16-inch, with what it says is the "longest battery life ever in a Mac". The good news is that those claims are pretty spot on, as we found that in our battery life benchmark test, where we ran a looped 1080p video until the MacBook Pro turned off, the battery lasted over 24 hours. Considering the power on offer here, that's extremely impressive.\n` +
       "**Value for money:** The MacBook Pro 16-inch (M3 Pro/M3 Max) is an incredibly ambitious laptop both in terms of hardware and design, and it’s aimed at creative professionals who need powerful mobile hardware. Yes, it's an expensive laptop - but if you need all that power, it's well worth paying for it.\n" +
       '**Read the full review:** [MacBook Pro 16-inch (M3 Max)](https://www.techradar.com/computing/macbooks/apple-macbook-pro-16-inch-m3-max)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -475,7 +503,11 @@ const data = [
       "**Battery life:** The efficient processor doesn't just keep the Lenovo Yoga Book 9i cool, it also means that despite having two OLED screens, battery life isn't too bad at all. In our review, we found that it lasted almost nine and a half hours during our battery life tests, and if you turn off one screen, that jumps up to just over 12 hours.\n" +
       "**Value for money:** Let's be blunt: this is an expensive laptop, with a launch price of $1,999 / £2,299.99 / AU$4,299, and it's unlikely to drop in price any time soon. Its dual screens and premium design does mean the high price is understandable, but there's no escaping the fact that its price could put a lot of people off.\n" +
       '**Read the full review:** [Lenovo Yoga Book 9i](https://www.techradar.com/computing/laptops/lenovo-yoga-book-9i-review)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -525,7 +557,11 @@ const data = [
       "**Battery life:** According to Razer, the Razer Blade 14 (2023) should offer up to 10 hours of battery life, but in our review, we found it was more like eight hours when using it for day-to-day work. When you start playing games on it, the battery struggles to make it past four hours - so you'll want to have this plugged in.\n" +
       "**Value for money:** Razer's reputation for expensive laptops is well deserved here. Despite it being a 14-inch laptop, its starting price point of $2,399 / £2,499.99 / AU$4,499 will be far too high for many people, though remember this is a gaming laptop with some of the best components you can currently buy.\n" +
       '**Read the full review:** [Razer Blade 14 (2023)](https://www.techradar.com/computing/gaming-laptops/razer-blade-14-2023-review-thin-and-light-with-big-performance)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -575,7 +611,11 @@ const data = [
       "**Battery life:** Powerful laptops with large screens often suffer from poor battery life, but thanks to the efficient hardware in the Dell XPS 17, it avoids that fate. During our review, we found that for watching videos and web browsing, it'll last just under 10 hours on a single charge, meaning you can use it unplugged for a whole workday - though heavier workloads will see the battery deplete faster.\n" +
       '**Value for money:** The Dell XPS 17 (9730) starts at $1,599 / £2,698.99 / AU$4,398.90, though the base model varies depending on location. This is certainly pricey for a laptop, though you do get good specs, a large screen and thin and light design for your money. If you configure it with more powerful components, expect the price to rise even further.\n' +
       '**Read the full review:** [Dell XPS 17 (9730)](https://www.techradar.com/computing/laptops/dell-xps-17-9730)',
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -618,7 +658,11 @@ const data = [
       "❌ **You don't need a powerful OLED-equipped laptop:** The Samsung Galaxy Book4 Pro comes packed with cutting edge tech and an industry-leading screen, but if you don't need the kind of performance on offer here, your money is better spent elsewhere.\n" +
       'The bottom line\n' +
       "💻 The **Samsung Galaxy Book4 Pro** is a stunning Ultrabook with cutting-edge components, including Intel's latest Core Ultra 7 processor, and a stunning OLED screen that is one of the best displays you can find on a laptop - especially at this price. ★★★★",
-    url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+    sources: [
+      {
+        url: 'https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361',
+      },
+    ],
   },
   {
     reason:
@@ -726,7 +770,11 @@ const data = [
       "**Display:** The 13.6-inch display offers a 2,560 x 1,664-pixel resolution and gets nice and bright in person, so it's a pleasant place to watch videos, write emails, edit photos and whatever else you want to do.\n" +
       'The MacBook Air M3 did well in our display tests, too. When we tested it with our light meter we found it delivers an average brightness of 476 nits, peaking around 496 when viewing HDR videos. That’s brighter than the [Dell XPS 13 OLED](https://www.tomsguide.com/reviews/dell-xps-13-oled-review)’s 357-nit average.\n' +
       '**Performance:** On Geekbench 6, which measures overall performance, the MacBook Air M2 hit 3,082 on the single-core CPU test and 12,087 on multi-core.',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -777,7 +825,11 @@ const data = [
       '**Battery life:** Our Dell XPS 15 review unit lasted just over 10 hours in our battery tests, which is good but not great when you consider that many MacBooks last 12-15 hours in the same tests.\n' +
       "However, it is much better than many Windows laptops, including the preceding XPS 15 (2021), which couldn't even last 8 hours in the same test. The newer XPS 15 also beat out both Windows ultraportables like the the [Lenovo Yoga 9i Gen 7](https://www.tomsguide.com/reviews/lenovo-yoga-9i-gen-7-review) (8:06) and gaming laptops like the [Alienware](https://www.tomsguide.com/tag/alienware) x14 (5:35).\n" +
       '**Read the full review:** [Dell XPS 15 OLED](https://www.tomsguide.com/reviews/dell-xps-15-2023)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -827,7 +879,11 @@ const data = [
       "**Battery life:** The OLED-equipped Asus Zenbook 13 lasted roughly 15 hours in our battery test, which is incredible for a Windows laptop. It rivals the [best MacBooks](https://www.tomsguide.com/best-picks/best-macbook) in that regard, and even lasted longer than Asus' advertised 13 hours.\n" +
       "That's excellent battery life, and it should help you feel more assured about leaving the house without a charger when you take your laptop on the go.\n" +
       '**Read the full review:** [Asus Zenbook 13 OLED](https://www.tomsguide.com/reviews/asus-zenbook-13-oled-review-an-excellent-value)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -879,7 +935,11 @@ const data = [
       "This tablet is no speed demon, but if you just need it for basic web browsing and entertainment you'll have no complaints.\n" +
       '**Battery life:** The Duet 3 lasted roughly 10 hours and 30 minute in our battery test, which is good enough that you can carry it to a day of classes without having to worry about plugging in. In my own hands-on time using the tablet at home, I found I could reliably use it sparingly for a few days and still count on having upwards of 70% battery life when I picked it up.\n' +
       '**Read the full review:** [Lenovo Duet 3](https://www.tomsguide.com/reviews/lenovo-duet-3)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -927,7 +987,11 @@ const data = [
       "**Performance:** While the Framework I tested performed well under pressure, the cooling fans are awfully loud and sometimes kick on even when doing light work like browsing the web. It also underperformed a bit in our performance benchmarks compared to a lot of its contemporaries. Our unit also fell a bit behind its contemporaries in our performance tests, so while it's great for work and some light gaming I wouldn't try taxing it with anything more serious.\n" +
       "**Battery life:** The Framework’s battery is good enough to get you through a day of work without needing to pack a charger, which is great to see in a productivity laptop. The Framework lasted 11 hours and 38 minutes in our battery test, which as you'll see from the chart of test results is quite good compared to some other laptops on this page.\n" +
       '**Read the full review:** [Framework Laptop 13 (2023)](https://www.tomsguide.com/reviews/framework-laptop-13-2023)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -974,7 +1038,11 @@ const data = [
       "**Performance:** Gaming performance is what matters in a laptop like this, and the 2022 Zephyrus G14 delivers if you configure it right. Our well-equipped review unit to hit 30-40 frames per second in Cyberpunk 2077 on max settings. However, that was with the help of AMD's FidelityFX Super Resolution upscaling tech. In general, this laptop can run the [best PC games](https://www.tomsguide.com/best-picks/best-PC-games) quite well, and it has no trouble with basic productivity tasks.\n" +
       "**Battery life:** The Asus Zephyrus G14 (2022) lasted roughly 10 hours and 14 minutes in our Tom's Guide battery test, and barely over an hour when gaming. That's great web browsing time for a gaming laptop, so this is a great choice if you want a gaming machine that can also last through a day of classes.\n" +
       '**Read the full review:** [Asus ROG Zephyrus G14 (2022)](https://www.tomsguide.com/reviews/asus-rog-zephyrus-g14-2022)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -1031,7 +1099,11 @@ const data = [
       "**Battery life:** In our battery testing our 14-inch M3 MacBook Pro lasted for 17 hours and 23 minutes. That's admittedly not quite as long as the 18:20 delivered the 13-inch MacBook Pro M2, but with that model now discontinued this is the new top dog of Apple's laptops when it comes to battery life.\n" +
       'In short, the M3 MacBook Pro can easily last you through a full day of work and beyond. If you need great battery life, this is the longest-lasting laptop on this list.\n' +
       '**Read the full review:** [MacBook Pro 14-inch (M3, 2023)](https://www.tomsguide.com/reviews/macbook-pro-14-inch-m3)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -1082,7 +1154,11 @@ const data = [
       "**Battery life:** Sadly, we've hit the one disappointing point in this otherwise glowing overview. While the Acer Swift 5 is a stunning little Windows laptop that's plenty good enough for what it costs, the fact that it barely lasted over 11 hours in our battery test was a little disappointing.\n" +
       "Don't get me wrong, it's still longer-lasting than most Windows laptops, including a few on this list. But our battery test is done under controlled conditions with the screen kept quite dim, and in the real world when you're perhaps using it in the bright sun or playing games on it, it will last a lot less time. In our review we noticed that using the laptop normally at max brightness caused it to conk out in about 5 hours, which is disappointing. Thankfully, it does charge quickly.\n" +
       '**Read the full review:** [Acer Swift 5 (2022)](https://www.tomsguide.com/reviews/acer-swift-5-2022)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -1131,7 +1207,11 @@ const data = [
       "**Performance:** The 13th Gen Intel Core CPU and 16GB of RAM in our Asus Zenbook 14 Flip OLED review unit ensure that this thin-and-light laptop doesn't straggle when it comes time to work. While this laptop can't exactly tear through big video editing projects or play the latest and greatest games at ultra-high settings, it's more than good enough for work and play.\n" +
       "**Battery life:** In our battery test the Asus Zenbook 14 Flip OLED lasted for 8 hours and 53 minutes, which is good but not great. It's acceptable and not a huge hassle if you don't plan to carry it around for a full day, but if you do it's kind of a bummer that you need to bring a charger with you or else risk running out of juice at a key moment.\n" +
       '**Read the full review:** [Asus Zenbook 14 Flip OLED](https://www.tomsguide.com/reviews/asus-zenbook-14-flip-oled).',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -1177,7 +1257,11 @@ const data = [
       '**Performance:** The Book3 Ultra is uniquely well-suited to both work and play thanks to its speedy CPU and discrete GeForce RTX 40-series laptop GPU, which give it enough power to double as a decent gaming laptop. The 16GB of included RAM make it feel plenty snappy for a productivity notebook.\n' +
       "**Battery life:** The Galaxy Book3 Ultra lasted for a smidge over 10 hours in our battery test, which is great for a gaming laptop but pretty unremarkable when compared to the other laptops on this list. It will probably get you through a work day, especially if you don't tax it too hard, but you might want to carry a charger just in case.\n" +
       '**Read the full review:** [Samsung Galaxy Book3 Ultra](https://www.tomsguide.com/reviews/samsung-galaxy-book-3-ultra)',
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -1218,7 +1302,11 @@ const data = [
       'The bottom line\n' +
       '💻 **The MacBook Pro 16-inch (M3 Max, 2023)** retains the same fetching design and gorgeous mini-LED display as the previous M2 Max model, this premium laptop’s performance is currently second to none. That hefty $3.5k starting price tag is a significant chunk of change, but professional creatives and even gamers will get their money’s worth.\n' +
       "**What you need to know:** The 16-inch MacBook Pro with the M3 Max chip is one of the most powerful laptops we’ve ever tested. That's not a huge surprise since we said that about its predecessor the [MacBook Pro 16-inch with the M2 Max](https://www.tomsguide.com/reviews/macbook-pro-16-inch-2023-review) chip, but it remains amazing that Apple's own chips can deliver this much power and efficiency in a laptop.",
-    url: 'https://www.tomsguide.com/best-picks/best-laptops',
+    sources: [
+      {
+        url: 'https://www.tomsguide.com/best-picks/best-laptops',
+      },
+    ],
   },
   {
     reason:
@@ -1254,7 +1342,11 @@ const data = [
       "However, some PC makers will solder memory on and also leave an empty internal slot for adding a stick of RAM. You may need to contact the laptop manufacturer or find the laptop's full specs online to confirm. And check the web for user experiences, because the slot may still be hard to get to, it may require nonstandard or hard-to-get memory or other pitfalls.\n" +
       '# Storage\n' +
       "You'll still find cheaper hard drives in budget laptops and larger hard drives in gaming laptops, but faster solid-state drives (SSDs) have all but replaced hard drives in laptops. They can make a big difference in performance. But not all SSDs are equally speedy, and cheaper laptops typically have slower drives; if the laptop only has 4GB or 8GB of RAM, it may end up swapping to that drive and the system may slow down quickly while you're working.",
-    url: 'https://www.cnet.com/tech/computing/best-laptop/',
+    sources: [
+      {
+        url: 'https://www.cnet.com/tech/computing/best-laptop/',
+      },
+    ],
   },
   {
     reason:
@@ -1270,7 +1362,11 @@ const data = [
       'The G410 has a dazzling prismatic sheen covering the keyboard, providing dedicated hotkeys for volume and microphone mute. It also features an ND dust tunnel 2.0 and air collision avoidance design to prevent dust build-up.\n' +
       'If you are a hardcore gaming enthusiast with no compromise on gaming performance, the ASUS Rogue Zephyrus G410 would be a great choice.\n' +
       '[Check Price and Reviews](https://www.amazon.com/dp/B0876MBLTN/ref=sspa%5Fmw%5Fdetail%5F1?ie=UTF8&psc=1&sp%5Fcsd=d2lkZ2V0TmFtZT1zcF9waG9uZV9kZXRhaWwp13NParams&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=01f8bc72a6779ebe8e07909ee927e787&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1286,7 +1382,11 @@ const data = [
       'The 15.6-inch Full HD display with a 165Hz refresh rate offers a sharp and bright viewing experience, ensuring the smoothest gaming possible. The matte anti-glare coating reduces glare for optimal performance during gaming or work.\n' +
       "The illuminated spectrum backlight keyboard, inspired by Rainbow Six Extractions' futuristic colors, enhances your gaming experience with highlighted WASD keys for faster and more seamless movement.\n" +
       '[Check Price and Reviews](https://www.amazon.com/MSI-Rainbow-Special-Crosshair15-Gaming/dp/B09RBCLYQ9/ref=mp%5Fs%5Fa%5F1%5F1?keywords=msi%252BCrosshair%252B15%252BRainbow&qid=1706443698&sr=8-1&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=055f9522648339d9e56aa12acd501649&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1311,7 +1411,11 @@ const data = [
       '**Cons:**\n' +
       '\\- No webcam\n' +
       '[Check Price and Reviews](https://www.amazon.com/ASUS-ROG-Strix-G15-Accessories/dp/B097SMFTBM/ref=mp%5Fs%5Fa%5F1%5F4?keywords=rog%252Bstrix%252Bg15%252B2022&qid=1706444024&sr=8-4&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=9efe9d50c2d537b97c5fabe478401d81&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1324,7 +1428,11 @@ const data = [
       "The NVIDIA RTX 3060 6GB GDDR6 GPU and 16 gigabytes DDR4 RAM ensure brilliant detail and clarity, rendering any game with precision. The impressive storage includes a 1TB solid-state drive, allowing ample space for files, programs, and games. With a sleek black aluminum finish, it's designed for gaming, and the HDMI port allows effortless connections to game consoles, TVs, monitors, or projectors.\n" +
       "Running on Windows 11 Home, it keeps you safe and secure, while Wi-Fi 6, Bluetooth 5.2, and Ethernet LAN keep you connected to the world. The 3-cell 53-watt battery provides excellent battery life, allowing extended gaming or movie-watching sessions. Weighing only 6 pounds, it's easy to carry wherever you go. Overall, the MSI Pulse GL76 is an ultra-lightweight powerhouse that enhances your gaming without sacrificing size or power.\n" +
       '[Check Price and Reviews](https://www.amazon.com/MSI-Pulse-GL76-Display-i7-12700H/dp/B0C4P1VJHN/ref=mp%5Fs%5Fa%5F1%5F8?keywords=MSI+Pulse+GL76&qid=1706444290&sr=8-8&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=c386b3e8a6e5fd25650b9e6e2bf1093d&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1347,7 +1455,11 @@ const data = [
       '\\- Big high refresh rate display\n' +
       '**Cons:**\n' +
       '\\- Current’s average battery life',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1371,7 +1483,11 @@ const data = [
       '**Cons:**\n' +
       '\\- Tons average GPU\n' +
       '[Check Price and Reviews](https://www.amazon.com/Dell-XPS-15-9520-i7-12700H/dp/B0C34FK4DX/ref=mp%5Fs%5Fa%5F1%5F3?keywords=Dell+xps+15+9520&qid=1706445766&sr=8-3&ufe=app%5Fdo%253Aamzn1.fos.17f26c18-b61b-4ce9-8a28-de351f41cffb&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=1e9f332b39b7db888dd85067b60e6bdc&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1396,7 +1512,11 @@ const data = [
       '\\- Bulky and heavy\n' +
       '\\- Short battery life\n' +
       '[Check Price and Reviews](https://www.amazon.com/Alienware-m15-Gaming-Laptop-15-6-inch/dp/B09TL9GGLP/ref=mp%5Fs%5Fa%5F1%5F3?keywords=alienware+mr15+r7&qid=1706446191&sr=8-3&ufe=app%5Fdo%253Aamzn1.fos.17f26c18-b61b-4ce9-8a28-de351f41cffb&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=fb6609011b566e0235410560362b9357&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1420,7 +1540,11 @@ const data = [
       '**Cons:**\n' +
       '\\- Average battery life.\n' +
       '[Check Price and Reviews](https://www.amazon.com/Lenovo-Legion-Pro-NVIDIA-7-5800H/dp/B09NS2SMKP/ref=mp%5Fs%5Fa%5F1%5F3?crid=1HH7A2XWKN77Z&keywords=lenovo+legion+5+pro&qid=1706446851&sprefix=lenovo+lefion+5+%252Caps%252C506&sr=8-3&ufe=app%5Fdo%253Aamzn1.fos.765d4786-5719-48b9-b588-eab9385652d5&%5Fencoding=UTF8&tag=kienmaprince-20&linkCode=ur2&linkId=0ec9938e14f234eee04ac1dc978b4329&camp=1789&creative=9325)',
-    url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+    sources: [
+      {
+        url: 'https://medium.com/@Bontinel./best-gaming-laptop-under-2000-comprehensive-guide-ea8a84ee9912',
+      },
+    ],
   },
   {
     reason:
@@ -1433,7 +1557,11 @@ const data = [
       '* No thrills and flashy elements\n' +
       'The ACEMAGIC AX16 Pro gaming laptop gives you a smooth gaming experience with its strong [AMD Ryzen](https://www.amd.com/en/processors/ryzen) 7 5700U processor. It makes games run well and look good on the bright 16.1″ FHD IPS Display, which shows colorful pictures with lots of detail.\n' +
       'You have plenty of space for your games and files with 16GB DDR4 memory and a 512GB M.2 NVMe SSD. You can even add more memory and storage if you need it. Plus, the laptop has lots of ports for connecting other devices and fast Wi-Fi for smooth online gaming. The backlit keyboard helps you see the keys in the dark, making gaming more fun. It’s also tough and slim, perfect for carrying around, and ACEMAGIC offers good customer service with lifetime technical support and a 12-month warranty.',
-    url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+    sources: [
+      {
+        url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+      },
+    ],
   },
   {
     reason:
@@ -1447,7 +1575,11 @@ const data = [
       '* CPU uses a smaller architecture = Potential heat addition\n' +
       'Our second choice is the ASUS Zephyrus G15 Gaming Laptop. This upgraded gaming laptop delivers exceptional performance for gamers. Powered by the AMD Ryzen 9 6900HS Processor, it effortlessly handles demanding AAA games with 8 cores and 16 threads, ensuring a lag-free gaming experience. With 40GB DDR5 RAM and a lightning-fast 2TB PCIe SSD, multitasking is seamless and data access is reliable. The stunning 15.6″ QHD 240Hz IPS Display enhances visuals with vibrant colors and a wider field of view, giving gamers a competitive edge.\n' +
       'Featuring an intelligently designed cooling system, the laptop maintains efficient cooling and whisper-quiet operation during extended gaming sessions. With a backlit keyboard for comfortable typing in any environment and Windows 11 Pro for enhanced controls and security, it offers a complete gaming solution. Measuring 14″x 9.6″x 0.78″ and weighing 4.19 lbs, it’s portable and convenient. Equipped with a range of ports including USB, HDMI, and Wi-Fi 6E + Bluetooth, connectivity is seamless. Overall, this gaming laptop provides exceptional performance and versatility, making it an ideal choice for gamers seeking top-tier experiences.',
-    url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+    sources: [
+      {
+        url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+      },
+    ],
   },
   {
     reason:
@@ -1460,7 +1592,11 @@ const data = [
       '* Stand can be unstable\n' +
       'The MSI Crosshair gaming laptop is a fantastic choice for gamers who want a top-notch gaming experience. It comes packed with a super powerful processor called the Intel Core i7 13th Gen 13620H. This processor makes the laptop run really fast, so you can do lots of things at once without any problems. Whether you’re playing games, streaming videos, or working on school projects, this laptop can handle it all with ease.\n' +
       'One of the best things about this gaming laptop is its graphics card, the Nvidia GeForce RTX 4070\\. This card makes your games look amazing with stunning graphics and realistic visuals. Plus, it supports special effects like ray tracing, which adds extra detail to your games, making them even more immersive. And with a big 16-inch display and a high refresh rate of 144Hz, you’ll feel like you’re right in the middle of the action. The backlit keyboard also makes it easy to play games in the dark, so you can game anytime, anywhere. With up to 64GB of RAM and up to 4TB of storage, you’ll have plenty of space to store all your favorite games and apps. And with Wi-Fi 6 and Bluetooth 5.2, you can stay connected wherever you go. Overall, the MSI Crosshair gaming laptop is a powerhouse that delivers incredible performance and stunning visuals, making it the perfect choice for gamers who demand the best.',
-    url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+    sources: [
+      {
+        url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+      },
+    ],
   },
   {
     reason:
@@ -1475,7 +1611,11 @@ const data = [
       '* Dissatisfaction reported with the display of the notebook computer\n' +
       'The Nitro 5 gaming laptop is a top pick for gamers because it’s packed with powerful features. With its 12th Gen Intel Core i7-12650H processor, it can handle any game smoothly. Plus, the NVIDIA GeForce RTX 4060 Laptop GPU makes graphics lightning-fast, thanks to its advanced technology. The 15.6” Full HD display with a quick 144Hz refresh rate ensures that your gaming experience is smooth and immersive. And with 16GB DDR5 memory and a 1TB SSD, you have plenty of space for all your games and quick loading times.\n' +
       'Not only does the Nitro 5 perform well, but it’s also designed with gamers in mind. It has Killer Ethernet and Wi-Fi, which means you’ll have a strong connection for online gaming. And its cooling system keeps it running smoothly, even during intense gaming sessions. With a range of ports for accessories and a manageable size and weight, it’s easy to take with you wherever you go. And with a one-year warranty, you can trust that it’s built to last. Overall, the Nitro 5 is a great choice for gamers who want a powerful and reliable laptop for all their gaming needs.',
-    url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+    sources: [
+      {
+        url: 'https://www.pcguide.com/laptop/guide/best-gaming-under-2000/',
+      },
+    ],
   },
   {
     reason:
@@ -1493,7 +1633,11 @@ const data = [
       '## Who should buy the Acer Aspire 3\n' +
       'Anyone who’s on a restricted budget! To get more specific, we feel as though the Acer Aspire 3 is a good option for students and remote workers. It’s inexpensive and the HD webcam produces “clean, crisp video” according to our review, which means you’ll always look your best in videoconferencing calls. It also delivers strong performance for the price.\n' +
       'Read our full [ Acer Aspire 3 review ](https://www.pcworld.com/article/1989517/acer-aspire-3-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1510,7 +1654,11 @@ const data = [
       '## Who should buy the Dell Inspiron Plus 16 7630\n' +
       'The Dell Inspiron Plus 16 7630 is great for young professionals, students, or anyone who’s looking for a powerful yet affordable machine. The battery will last you a full work day and then some, and it can pull double duty playing games. Dell laptops often go on sale, so you may be able to score this machine at a steep discount.\n' +
       'Read our full [ Dell Inspiron Plus 16 7630 review ](https://www.pcworld.com/article/2089244/dell-inspiron-plus-16-7630-laptop-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1527,7 +1675,11 @@ const data = [
       '# Who should buy the Lenovo Flex 5i Chromebook Plus\n' +
       'If you’re looking to pick up a premium Chromebook for work or personal use, then the Lenovo Flex 5i Chromebook Plus is a fine choice. While the $499 price tag is very much in the high end when it comes to Chromebooks, we feel the overall fit, finish, and firepower make it worth the extra cash.\n' +
       'Read our full [ Lenovo Flex 5i Chromebook Plus review ](https://www.pcworld.com/article/2158103/lenovo-flex-5i-chromebook-plus-review-a-luxurious-affordable-2-in-1.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1544,7 +1696,11 @@ const data = [
       'The HP Dragonfly G4 is the perfect machine for frequent travelers due to its incredibly low weight and slim profile. It’s also a good option for office workers because of the Sure View privacy filter and the taller screen, as more vertical pixels means more room for scrolling through documents and working on spreadsheets. The fans are also spin quietly even when under a heavy workload.\n' +
       '_Note 2/27/2024: Though we liked its compact form factor and 4G modem, the recently reviewed [HP Elitebook 640 G10](https://www.pcworld.com/article/2223286/hp-elitebook-640-g10-review.html) couldn’t quite knock the HP Dragonfly G4 off of its pedestal. The display’s 16:9 aspect ratio isn’t the best size for office work and it doesn’t deliver strong contrast values. The HP Dragonfly G4, however, has a taller display and better contrast. _\n' +
       'Read our full [ HP Dragonfly G4 review ](https://www.pcworld.com/article/2165537/hp-dragonfly-g4-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1562,7 +1718,11 @@ const data = [
       '## Who should buy the Acer Swift Edge 16\n' +
       'If you’re looking for a lightweight ultraportable with strong performance, the sub-$1,000 Acer Swift Edge 16 is the one to pick. It’s light enough to take with you from class to class or meeting to meeting. The display is also fantastic for office work, school work, watching movies, and so on.\n' +
       'Read our full [ Acer Swift Edge 16 review ](https://www.pcworld.com/article/2092812/acer-swift-edge-16-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1580,7 +1740,11 @@ const data = [
       '## Who should buy the MSI Titan 18 HX\n' +
       'If you’re after the ultimate gaming experience, the MSI Titan 18 HX will certainly deliver. In addition to the massive amount of power this thing can generate, it also has loads of connectivity options for those times when you want to hook up to an external mouse or monitor. That said, it’s an incredibly expensive machine. If money is no object, then the MSI Titan 18 HX is the right pick for you. For those on a stricter budget, check out our best budget pick below.\n' +
       'Read our full [ MSI Titan 18 HX review ](https://www.pcworld.com/article/2232841/msi-titan-18-hx-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1597,7 +1761,11 @@ const data = [
       '## Who should buy the Asus TUF Gaming A16 Advantage Edition\n' +
       'The Asus TUF Gaming A16 Advantage Edition is a good option for those on a tight budget. For under a grand, you’re getting reliable graphics performance, a spacious keyboard, and long battery life. It also works as a good general purpose machine. With a Cinebench R20 score of 589, it should have “no trouble running lightweight apps and programs,” according to our review.\n' +
       'Read our full [ Asus TUF Gaming A16 Advantage Edition review ](https://www.pcworld.com/article/1801913/asus-tuf-gaming-a16-advantage-edition-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1614,7 +1782,11 @@ const data = [
       '## Who should buy the Asus Zenbook 14 Flip OLED\n' +
       'The Asus Zenbook 14 Flip is a good option for business professionals because of its convertible, lightweight design and stunning OLED display. You can take this machine with you anywhere and you don’t have to worry about finding an outlet to charge up. How can you go wrong with that?\n' +
       'Read our full [ Asus Zenbook 14 Flip OLED review ](https://www.pcworld.com/article/2040974/asus-zenbook-14-flip-oled-review-a-versatile-oled-2-in-1-with-an-all-day-battery.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1630,7 +1802,11 @@ const data = [
       'Content creators… duh! It’s a real powerhouse thanks to the internal components. Plus, 1TB is an ample amount of storage and the screen is a massive 17-inches. If you’re a video editor or photographer, you’ll need a lot of screen real estate as well as storage space. The one big downside is the price, as it will set you back about $2,000\\.\n' +
       '_Note 2/27/2024:_ _The recently reviewed [Dell XPS 16 (2024)](https://www.pcworld.com/article/2242537/dell-xps-16-2024-review.html) didn’t make the cut because of the annoying typing experience as well as the limited port selection for pro users. _ _It’s also more expensive than our current top pick and the display is a bit smaller. Negatives aside, it still offers excellent CPU performance and the discrete GPU is a big help when it comes to heavier workloads. _\n' +
       'Read our full [ Dell XPS 17 9730 review ](https://www.pcworld.com/article/1955470/dell-xps-17-9730-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1647,7 +1823,11 @@ const data = [
       '## Who should buy the HP Pavilion Plus 14\n' +
       'Anyone who’s looking to pick up a fast, affordable laptop with an OLED display. Performance is zippy enough for day-to-day tasks as well as heavier workloads and the display provides smooth, colorful visuals. Sure, you could buy the more powerful [Asus Zenbook 14 Flip OLED](https://go.redirectingat.com/?id=111346X1569483&url=https://shop.asus.com/us/90nb10e3-m004e0-up3404va.html?gad%5Fsource=1&xcust=2-1-436674-1-0-0&sref=https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html) for $999, but it’s not as lightweight as the Pavilion Plus. Overall, it’s just a well-made machine.\n' +
       'Read our full [ HP Pavilion Plus Laptop 14 review ](https://www.pcworld.com/article/2234142/hp-pavilion-plus-laptop-14-review.html)',
-    url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+    sources: [
+      {
+        url: 'https://www.pcworld.com/article/436674/the-best-pc-laptops-of-the-year.html',
+      },
+    ],
   },
   {
     reason:
@@ -1708,7 +1888,11 @@ const data = [
       '> Asus ROG Strix Scar 16 review\n' +
       "**Verdict:** We're getting our hands on more RTX 40-Series gaming laptops all the time, but for now the Asus ROG Strix Scar 16 is the best model to pass our desks. It's well worth the investment for anyone on the hunt for a high-end machine with bags of power to spare for future releases.\n" +
       '_**Read more:**_ [_Asus ROG Strix Scar 16 (2023) review_](https://www.gamesradar.com/asus-rog-strix-scar-16-2023-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1740,7 +1924,11 @@ const data = [
       '> Alienware M15 R7 review\n' +
       "**Verdict:** Alienware is, after all, a luxury brand. With its M-series now falling to the middle of its range (thanks to the advent of the X-series), the Alienware M15 R7 is affordable _by the brand's standards. _ That means you'll find far cheaper machines out there, but without that Alienware pedigree to speak of. Still, with performance to rival some of the best gaming laptops in the business, and only a few sacrifices to get there for a great price, this is an excellent option for most players. You could consider the X15 technically the [best Alienware gaming laptop](https://www.gamesradar.com/alienware-gaming-laptop-guide/) on paper alone, but when it comes down to price and the wider market, this is the winner.\n" +
       '_**Read more:**_ [_Alienware M15 R7 review_](https://www.gamesradar.com/alienware-m15-r7-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1772,7 +1960,11 @@ const data = [
       "**Verdict:** We'd recommend the Nitro 5 to anyone after their first gaming laptop - it's the perfect way to spend less, get a few good years of gaming in, and work out exactly what you need from a larger purchase further down the line.\n" +
       "You'll also find excellent options in the [Dell](https://www.gamesradar.com/tag/dell/) G15 and Asus TUF Dash F15\\. The former is generally found on sale for slightly less than the Acer Nitro 5, but doesn't quite pack the same thermal regulation. Meanwhile, Asus's budget option is pitched at a slightly higher price point, sacrificing processing power for a 1440p display.\n" +
       '**Read more:** [Acer Nitro 5 review](https://www.gamesradar.com/acer-nitro-5-2022-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1804,7 +1996,11 @@ const data = [
       '> Asus ROG Zephyrus G14 review\n' +
       "**Verdict:** The G14 is the best 14-inch gaming laptop we've had our hands on so far. It manages to combine power and portability in a package that very few rigs can match. You're getting better value for money, more component choices, and lower prices than the Alienware x14, making it the go-to for anyone after a compact PC.\n" +
       '_**Read more:**_ [_2023 Asus ROG Zephyrus G14 review_](https://www.gamesradar.com/asus-rog-zephyrus-g14-2023-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1837,7 +2033,11 @@ const data = [
       "Of course, this is no cheap machine. The 2022 Razer Blade 15 starts at $2,499.99 for an RTX 3060 configuration. You're certainly paying for this luxury name here, but if you're on the hunt for one of the most technically capable machines in one of the most portable form factors, the cash is well invested.\n" +
       "_Note: The 2023 Razer Blade 15 is on its way, and once we've had our hands on the newer device we'll update this guide accordingly. _\n" +
       '_**Read more:**_ [_Razer Blade 15 review_](https://www.gamesradar.com/razer-blade-15-review-2022/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1868,7 +2068,11 @@ const data = [
       '> Alienware M18 review\n' +
       "**Verdict:** The Alienware M18 does make a few sacrifices, but in doing so it manages to position itself as an incredibly versatile gaming laptop. You can configure it up to the high heavens if you have the budget, or keep things more grounded for big-screen gaming under $2,000\\. That's not something many 18-inchers can claim - and especially not machines that manage to squeeze this amount of power out of their components.\n" +
       '_**Read more:**_ [_Alienware M18 review_](https://www.gamesradar.com/alienware-m18-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1901,7 +2105,11 @@ const data = [
       "Throw in consistent 100+ framerates across top graphics settings in Returnal, Total War: Three Kingdoms, and Hitman 3 and it's obvious this is a powerful machine. The consistency of those scores makes this the most powerful gaming laptop we've tested yet.\n" +
       "**Verdict:** The Asus ROG Strix Scar 18 isn't going to be for everyone. In fact, it's for very few players at all. However, if you're after a desk top machine that also offers the option of portability every now and then it's the most powerful option we've tested so far.\n" +
       '_**Read more:**_ [_Asus ROG Strix Scar 18 review_](https://www.gamesradar.com/asus-rog-strix-scar-18-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
@@ -1934,14 +2142,22 @@ const data = [
       '> HP Omen Transcend 16 review\n' +
       "**Verdict:** We were incredibly impressed with the HP Omen Transcend 16\\. While the brand has struggled to be taken seriously alongside Razer, Alienware and others over the last few years, this could be the start of a new era - and it's definitely the most well-rounded slimline gaming laptop we've tested so far.\n" +
       '_**Read more:**_[_HP Omen Transcend 16 review_](https://www.gamesradar.com/hp-omen-transcend-16-review/)',
-    url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+    sources: [
+      {
+        url: 'https://www.gamesradar.com/best-gaming-laptops-compared/',
+      },
+    ],
   },
   {
     reason:
       'This text discusses laptops with the longest battery life in 2024, which is relevant to the query.',
     title: 'Laptop - Laptops with longest battery life in 2024',
     text: 'https://www.cnet.com/tech/computing/best-battery-life-laptops-2024/ Best Battery Life Laptops of 2024 ? Matt Elliott',
-    url: 'https://www.cnet.com/tech/computing/best-battery-life-laptops-2024/',
+    sources: [
+      {
+        url: 'https://www.cnet.com/tech/computing/best-battery-life-laptops-2024/',
+      },
+    ],
   },
 ];
 

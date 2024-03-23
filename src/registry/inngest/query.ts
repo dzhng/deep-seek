@@ -18,7 +18,9 @@ export const run = inngest.createFunction(
     );
 
     const queryRes = await step.run('search', async () => {
-      const query = await generateQueryQuestions(preprocessed.objective);
+      const query = await generateQueryQuestions({
+        query: preprocessed.objective,
+      });
       const results = await search(query);
       return browse({ results });
     });

@@ -11,7 +11,7 @@ export async function aggregate({
   results: (BrowseResult & { query: string | null })[];
   query: string;
 }): Promise<{
-  answer: string;
+  answer?: string;
   confidence: number;
   sources: { title?: string; url: string }[];
 }> {
