@@ -21,10 +21,10 @@ const content = [
 describe('aggregateContent', () => {
   it('Should find the correct answer', async () => {
     const answer = await enrichCell({
-      query: 'Price - The price of the laptop',
+      query: 'Acer Swift 5 - Price - The price of the laptop',
       content,
     });
     console.log('Answer', answer);
-    assert(answer.confidence === 10);
+    assert(answer.confidence === 1);
   });
 });

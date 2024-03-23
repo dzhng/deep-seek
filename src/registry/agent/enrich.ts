@@ -36,7 +36,7 @@ export async function enrichCell({
   const browseResults = await browse({ results: searchResults });
   const aggregatedAnswer = await aggregate({
     results: browseResults,
-    query: expandedQuery.objective,
+    query: expandedQuery.queries[0],
   });
 
   return {
