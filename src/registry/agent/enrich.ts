@@ -3,7 +3,6 @@ import { compact, flatten } from 'lodash';
 import { aggregateContent } from '@/registry/internet/aggregate-content';
 import { aggregate } from '@/registry/search/aggregate';
 import { browse } from '@/registry/search/browse';
-import { generateQueryQuestions } from '@/registry/search/research';
 import { search } from '@/registry/search/search';
 import { ContentResultWithSources, TableCell } from '@/registry/types';
 
@@ -31,12 +30,12 @@ export async function enrichCell({
   }
 
   // if confidence is low, retrieve and augment the answer with web data
-  const expandedQuery = await generateQueryQuestions({ query, maxQueries: 1 });
-  const searchResults = await search(expandedQuery);
+  //const searchQuery = await preprocessSearchQuery({ query });
+  const searchResults = await search({ query });
   const browseResults = await browse({ results: searchResults });
   const aggregatedAnswer = await aggregate({
     results: browseResults,
-    query: expandedQuery.queries[0],
+    query,
   });
 
   return {
