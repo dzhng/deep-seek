@@ -19,10 +19,19 @@ const content = [
 ];
 
 describe('aggregateContent', () => {
-  it('Should find the correct answer', async () => {
+  it('Should find the correct answer in laptop based on content', async () => {
     const answer = await enrichCell({
       query: 'Acer Swift 5 - Price - The price of the laptop',
       content,
+    });
+    console.log('Answer', answer);
+    assert(answer.confidence === 1);
+  });
+
+  it('Should research topic without content', async () => {
+    const answer = await enrichCell({
+      query: 'OpenAI - Market Cap',
+      content: [],
     });
     console.log('Answer', answer);
     assert(answer.confidence === 1);

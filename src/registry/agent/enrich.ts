@@ -14,12 +14,14 @@ export async function enrichCell({
   query: string;
   content: ContentResultWithSources[];
 }): Promise<TableCell> {
-  const answer = await aggregateContent({
-    query,
-    content,
-  });
+  const answer = content.length
+    ? await aggregateContent({
+        query,
+        content,
+      })
+    : null;
 
-  if (answer.answer && answer.confidence > 0.3) {
+  if (answer && answer.answer && answer.confidence > 0.3) {
     return {
       text: answer.answer,
       confidence: answer.confidence,
