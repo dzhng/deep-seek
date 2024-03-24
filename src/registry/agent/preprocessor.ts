@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { opusCompletion } from '@/services/llm';
+import { mixtralCompletion } from '@/services/llm';
 import { toXML } from '@/lib/xml';
 
 // given a user prompt, preprocess and decompose into the exact object to find and the enriched fields
@@ -9,36 +9,10 @@ export async function preprocessPrompt({
 }: {
   userPrompt: string;
 }): Promise<{
-  objective: string;
-  direction: string;
-  urls: string[];
-  mainField: { name: string; description: string };
-  fields: { name: string; description: string }[];
+  columns: { name: string; description: string }[];
 }> {
   const schema = z.object({
-    objective: z
-      .string()
-      .describe('The overall objective in one short sentence.'),
-    direction: z
-      .string()
-      .describe(
-        'Summarize how an information retrieval system would execute this.',
-      ),
-    urls: z
-      .string()
-      .array()
-      .describe(
-        'A list of URLs that is included in the user prompt, can be an empty array if nothing is included.',
-      ),
-    mainField: z
-      .object({
-        name: z.string().describe('A 1 - 3 word name for this object'),
-        description: z
-          .string()
-          .describe('Describe the information that is going to be extracted.'),
-      })
-      .describe('What is the main object you are extracting?'),
-    fields: z
+    columns: z
       .object({
         name: z.string().describe('A 1 - 3 word name for the column.'),
         description: z
@@ -53,42 +27,64 @@ export async function preprocessPrompt({
       ),
   });
 
-  const examples: { prompt: string; output: z.infer<typeof schema> }[] = [
+  const examples: { prompt: string; output: string }[] = [
     {
       prompt:
-        'Find all the speakers in this event: https://partiful.com/e/kEQfMgxPaDKJXgFNT6n5, find their emails, twitter profile picture, 5 most recent tweets, and any recent news about them or their company.',
-      output: {
-        objective: 'Find all the speakers in this event and enrich.',
-        direction:
-          'Go to the URL, extract a list of speaker speakers, then research each fields individually.',
-        urls: ['https://partiful.com/e/kEQfMgxPaDKJXgFNT6n5'],
-        mainField: {
-          name: 'Name',
-          description: 'Name of the speaker',
+        'state of art algorithms on 2d image classification with best accuracy on imagenet',
+      output: JSON.stringify(
+        {
+          columns: [
+            { name: 'Model', description: 'The name of the model.' },
+            {
+              name: 'Accuracy',
+              description:
+                'The accuracy of image classification model evaluated using imagenet',
+            },
+            { name: 'Year', description: 'The year of the model release.' },
+            {
+              name: 'Data',
+              description:
+                'The exact training/validation/test dataset split has been used.',
+            },
+            {
+              name: 'Number of params',
+              description: 'The model size, how many parameters',
+            },
+            { name: 'Paper', description: 'List of recent tweets' },
+          ],
         },
-        fields: [
-          { name: 'Email', description: 'Email of the speaker' },
-          {
-            name: 'Twitter picture',
-            description: 'URL of the twitter profile picture',
-          },
-          { name: 'Recent tweets', description: 'List of recent tweets' },
-          { name: 'Recent news', description: 'Summary of recent news' },
-        ],
-      },
+        null,
+        2,
+      ),
     },
     {
-      prompt:
-        'Find a list of all the companies who have spoken at agi house the last month.',
-      output: {
-        objective:
-          'Find all companies who have sponen at agi house last month.',
-        direction:
-          'Search for agi house events, extract companies from each event.',
-        urls: [],
-        mainField: { name: 'Name', description: 'Company name' },
-        fields: [{ name: 'Domain', description: 'Company domain' }],
-      },
+      prompt: 'the best LLM model for code generation',
+      output: JSON.stringify(
+        {
+          columns: [
+            { name: 'Model', description: 'The name of the model.' },
+            {
+              name: 'HumanEval',
+              description:
+                "HumanEval consists of 164 hand-written programming problems with corresponding unit tests. It can test out LLM through a wide range of difficulty levels. This is the most important metrics for LLM's coding capability.",
+            },
+            {
+              name: 'MATH',
+              description:
+                'MATH is a dataset of 12,500 challenging competition mathematics problems. This can be used to test out if LLM can translate complex mathematical problem statements into accurate and efficient code.',
+            },
+            {
+              name: 'F1 Score',
+              description:
+                ' F1 score is used to evaluate the quality of generated code by comparing it against reference solutions.',
+            },
+            { name: 'MMLU', description: 'Undergraduate level knowledge.' },
+            { name: 'GPQA', description: 'Graduate level reasoning.' },
+          ],
+        },
+        null,
+        2,
+      ),
     },
   ];
 
@@ -97,12 +93,13 @@ export async function preprocessPrompt({
     examples: examples.map(example => ({ example })),
   });
 
-  const prompt = `Given a prompt from the user, break it down so it can be processed by an intelligent AI that can scrape and gather information from the internet.\n${toXML({ prompt: userPrompt })}\n\nHere are some potiential examples:\n${examplesString}`;
+  const prompt = `Given a prompt from the user, return the columns that should be shown to the user as part of the end result. Each column will be researched seperately and should be a key question that help the user understand the result more.\n${toXML({ prompt: userPrompt })}\n\nHere are some potiential examples:\n${examplesString}`;
 
-  const res = await opusCompletion(prompt, {
+  const res = await mixtralCompletion(prompt, {
     systemMessage:
-      'You are an AI planner that is part of a larger information retrieval system. Your job is to break down prompts submitted by the user into precise directions for other AI agents to execute down the line. The final output from the information retrieval system is a table with a list of results.',
+      'You are an AI planner that is part of a larger information retrieval system. The final output from the information retrieval system is a table with a list of results.',
     schema,
+    responsePrefix: '{ "columns": [',
   });
 
   return res.data;

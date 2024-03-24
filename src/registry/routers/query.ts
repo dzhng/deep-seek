@@ -6,7 +6,6 @@ import { enrichCell } from '@/registry/agent/enrich';
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
 import { inngest } from '@/registry/inngest/client';
 import { browse } from '@/registry/search/browse';
-import { generateQueryQuestions } from '@/registry/search/research';
 import { retrieve } from '@/registry/search/retrieve';
 import { search } from '@/registry/search/search';
 import { TableCell } from '@/registry/types';
@@ -21,11 +20,10 @@ export const queryRouter = router({
     .mutation(async ({ input }) => {
       const preprocessed = await preprocessPrompt({ userPrompt: input.prompt });
 
-      const query = await generateQueryQuestions({
-        query: preprocessed.objective,
+      const results = await search({
+        query: input.prompt,
+        category: 'research paper',
       });
-      console.log('Preprocessed query', query);
-      const results = await search(query);
       const browseRes = await browse({ results });
 
       const nodeType = `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`;
