@@ -35,10 +35,11 @@ export default function Home() {
   });
 
   const onSubmit = useCallback(
-    (values: z.infer<typeof formSchema>) => {
-      runQuery.mutate({ prompt: values.prompt });
+    async (values: z.infer<typeof formSchema>) => {
       //form.reset();
       toast('Submitted');
+      const res = await runQuery.mutateAsync({ prompt: values.prompt });
+      console.log('Results', res);
     },
     [runQuery],
   );
@@ -117,21 +118,17 @@ export default function Home() {
                           <p>{cell.text}</p>
                           <div>
                             {cell.sources.map((source, sourceIndex) => (
-                              <>
-                                [
-                                <a
-                                  key={sourceIndex}
-                                  href={source.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-xs text-blue-500"
-                                >
-                                  {allSources
-                                    .map(s => s.url)
-                                    .indexOf(source.url) + 1}
-                                </a>
-                                ]
-                              </>
+                              <a
+                                key={sourceIndex}
+                                href={source.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-blue-500"
+                              >
+                                {allSources
+                                  .map(s => s.url)
+                                  .indexOf(source.url) + 1}
+                              </a>
                             ))}
                           </div>
                         </>

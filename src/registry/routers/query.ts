@@ -74,9 +74,11 @@ export const queryRouter = router({
       }
 
       const cells = await pall(promises, {
-        concurrency: 10,
+        concurrency: 15,
         stopOnError: false,
       });
+
+      console.log('Finished processing');
 
       const table: (TableCell | undefined)[][] = Array(retrieveRes.length)
         .fill(undefined)
