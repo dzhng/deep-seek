@@ -11,6 +11,7 @@ export async function preprocessPrompt({
 }): Promise<{
   entity: { name: string; description: string };
   columns: { name: string; description: string }[];
+  startDate?: Date;
 }> {
   const schema = z.object({
     entity: z
@@ -35,6 +36,12 @@ export async function preprocessPrompt({
       .array()
       .describe(
         'What additional columns should be in the final output, in additional to the main entity column.',
+      ),
+    startDate: z
+      .string()
+      .nullish()
+      .describe(
+        'Earliest date that any results should be from. Respond in ISO 8601 format (e.g. 2023-01-01T00:00:00.000Z)',
       ),
   });
 
@@ -65,6 +72,7 @@ export async function preprocessPrompt({
             description: 'The model size, how many parameters',
           },
         ],
+        startDate: undefined,
       },
     },
     {
@@ -87,6 +95,37 @@ export async function preprocessPrompt({
               'The amount of RAM the laptop has in its starting config',
           },
         ],
+        startDate: '2023-01-01T00:00:00.000Z',
+      },
+    },
+    {
+      prompt: 'Best stocks 2024',
+      output: {
+        entity: {
+          name: 'Stock',
+          description: 'The name or ticker symbol of the stock',
+        },
+        columns: [
+          {
+            name: 'Company',
+            description: 'The name of the company the stock represents',
+          },
+          { name: 'Price', description: 'The current price of the stock' },
+          {
+            name: 'YTD Return',
+            description:
+              'The year-to-date return percentage of the stock in 2024',
+          },
+          {
+            name: 'Market Cap',
+            description: 'The market capitalization of the company in billions',
+          },
+          {
+            name: 'Sector',
+            description: 'The market sector that the company operates in',
+          },
+        ],
+        startDate: '2024-01-01T00:00:00.000Z',
       },
     },
   ];
@@ -96,7 +135,8 @@ export async function preprocessPrompt({
     examples: examples.map(example => ({ example })),
   });
 
-  const prompt = `Given a prompt from the user, return the columns that should be shown to the user as part of the end result. Each column will be researched seperately and should be a key question that help the user understand the result more.\n${toXML({ prompt: userPrompt })}\n\nHere are some potiential examples:\n${examplesString}`;
+  const now = new Date();
+  const prompt = `Given a prompt from the user, return the columns that should be shown to the user as part of the end result. Each column will be researched seperately and should be a key question that help the user understand the result more. Today is: ${now.toISOString()}\n${toXML({ prompt: userPrompt })}\n\nHere are some potiential examples:\n${examplesString}`;
 
   const res = await opusCompletion(prompt, {
     systemMessage:
@@ -104,5 +144,8 @@ export async function preprocessPrompt({
     schema,
   });
 
-  return res.data;
+  return {
+    ...res.data,
+    startDate: res.data.startDate ? new Date(res.data.startDate) : undefined,
+  };
 }

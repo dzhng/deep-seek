@@ -26,11 +26,13 @@ export const queryRouter = router({
           search({
             query: input.prompt,
             numResults: 5,
+            startPublishDate: preprocessed.startDate,
           }),
           search({
             query: input.prompt,
             isNeural: true,
             numResults: 10,
+            startPublishDate: preprocessed.startDate,
           }),
         ]),
       );
