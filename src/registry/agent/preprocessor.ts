@@ -133,7 +133,12 @@ export async function preprocessNeuralPrompt({
     {
       prompt: 'best 2 dollar wine in United States',
       output:
-        "The best wine under $2 in the USA, including specific brand names, varietals, flavor profiles, tasting notes, regions of origin within America, any awards or recognition, average price under $2, availability at major retailers or online, excluding wines above $2, non-USA origin.Here's a great $2 wine you can try in the United States:",
+        "The best wine under $2 in the USA, excluding wines above $2, non-USA origin, including specific brand names, varietals, flavor profiles, tasting notes, regions of origin within America, any awards or recognition, average price under $2, availability at major retailers or online,  Here's a great $2 wine you can try in the United States:",
+    },
+    {
+      prompt: 'Best laptops 2024',
+      output:
+        'Here are some of the best 2024 laptops, excluding older models from 2023 or earlier, including specific product names, key specs like CPU, GPU, RAM, storage, display, battery life, pros and cons of each model, starting prices, release dates, comparisons between top contenders:',
     },
   ];
 

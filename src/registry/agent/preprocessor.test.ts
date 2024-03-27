@@ -21,16 +21,16 @@ describe('preprocessPrompt', () => {
 });
 
 describe('preprocessNeuralPrompt', () => {
-  it('Stock use case', async () => {
+  it('Shampoo use case', async () => {
     const neuralPrompt = await preprocessNeuralPrompt({
-      userPrompt: 'Top performing stocks in 2024',
+      userPrompt: 'Best shampoo in 2024',
     });
     console.log('neuralPrompt \n', neuralPrompt);
   });
 
-  it('Laptop use case', async () => {
+  it('Stock use case', async () => {
     const neuralPrompt = await preprocessNeuralPrompt({
-      userPrompt: 'Best laptops 2024',
+      userPrompt: 'Top performing stocks in 2024',
     });
     console.log('neuralPrompt \n', neuralPrompt);
   });
