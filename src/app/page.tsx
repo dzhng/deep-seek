@@ -75,7 +75,60 @@ export default function Home() {
       {runQuery.data && (
         <>
           <hr />
-          <div>
+          <div className="w-full divide-y divide-gray-200 overflow-x-scroll">
+            <div className="bg-gray-50">
+              {runQuery.data.columns.map((column, index) => (
+                <div
+                  key={index}
+                  className="w-[300px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                >
+                  {column.name}
+                </div>
+              ))}
+            </div>
+
+            <div className="divide-y divide-gray-200">
+              {runQuery.data.table.map((row, rowIndex) => (
+                <div key={rowIndex} className="flex w-fit bg-white">
+                  {row.map((cell, cellIndex) => (
+                    <div
+                      key={cellIndex}
+                      className="w-[300px] overflow-hidden whitespace-break-spaces px-6 py-4 text-sm text-gray-500"
+                    >
+                      {cell ? (
+                        <>
+                          <p>{cell.text}</p>
+                          <div>
+                            {cell.sources.map((source, sourceIndex) => (
+                              <>
+                                [
+                                <a
+                                  key={sourceIndex}
+                                  href={source.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-xs text-blue-500"
+                                >
+                                  {sourceIndex + 1}
+                                </a>
+                                ]
+                              </>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        'N/A'
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <hr />
+          <div className="overflow-x-hidden">
+            <h2 className="text-lg font-bold">Sources</h2>
             <ul className="list-disc pl-5">
               {uniqBy(
                 compact(
@@ -86,6 +139,7 @@ export default function Home() {
                 'url',
               ).map((source, sourceIndex) => (
                 <li key={sourceIndex}>
+                  {sourceIndex + 1}.{' '}
                   <a
                     href={source.url}
                     target="_blank"
@@ -97,63 +151,6 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <hr />
-          <div>
-            <div className="overflow-x-auto">
-              <div className="min-w-full divide-y divide-gray-200">
-                <div className="bg-gray-50">
-                  <div className="flex">
-                    {runQuery.data.columns.map((column, index) => (
-                      <div
-                        key={index}
-                        className="w-[400px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                      >
-                        {column.name}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="divide-y divide-gray-200 bg-white">
-                  {runQuery.data.table.map((row, rowIndex) => (
-                    <div key={rowIndex} className="flex">
-                      {row.map((cell, cellIndex) => (
-                        <div
-                          key={cellIndex}
-                          className="w-[400px] overflow-hidden whitespace-break-spaces px-6 py-4 text-sm text-gray-500"
-                        >
-                          {cell ? (
-                            <>
-                              <p>{cell.text}</p>
-                              <div>
-                                {cell.sources.map((source, sourceIndex) => (
-                                  <>
-                                    [
-                                    <a
-                                      key={sourceIndex}
-                                      href={source.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-xs text-blue-500"
-                                    >
-                                      {sourceIndex + 1}
-                                    </a>
-                                    ]
-                                  </>
-                                ))}
-                              </div>
-                            </>
-                          ) : (
-                            'N/A'
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </>
       )}
