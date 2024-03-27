@@ -43,6 +43,17 @@ export default function Home() {
     [runQuery],
   );
 
+  const allSources = runQuery.data
+    ? uniqBy(
+        compact(
+          runQuery.data.table.flatMap(row =>
+            row.flatMap(cell => cell?.sources),
+          ),
+        ),
+        'url',
+      )
+    : [];
+
   return (
     <main className="min-h-screen space-y-3 p-24">
       <h1 className="text-lg font-bold">Deep Seek</h1>
@@ -76,7 +87,7 @@ export default function Home() {
         <>
           <hr />
           <div className="w-full divide-y divide-gray-200 overflow-x-scroll">
-            <div className="bg-gray-50">
+            <div className="flex w-fit bg-gray-50">
               {runQuery.data.columns.map((column, index) => (
                 <div
                   key={index}
@@ -94,6 +105,12 @@ export default function Home() {
                     <div
                       key={cellIndex}
                       className="w-[300px] overflow-hidden whitespace-break-spaces px-6 py-4 text-sm text-gray-500"
+                      style={{
+                        backgroundColor:
+                          cell && cell.confidence < 1
+                            ? '#FFF4E6'
+                            : 'transparent',
+                      }}
                     >
                       {cell ? (
                         <>
@@ -109,7 +126,9 @@ export default function Home() {
                                   rel="noopener noreferrer"
                                   className="text-xs text-blue-500"
                                 >
-                                  {sourceIndex + 1}
+                                  {allSources
+                                    .map(s => s.url)
+                                    .indexOf(source.url) + 1}
                                 </a>
                                 ]
                               </>
@@ -130,14 +149,7 @@ export default function Home() {
           <div className="overflow-x-hidden">
             <h2 className="text-lg font-bold">Sources</h2>
             <ul className="list-disc pl-5">
-              {uniqBy(
-                compact(
-                  runQuery.data.table.flatMap(row =>
-                    row.flatMap(cell => cell?.sources),
-                  ),
-                ),
-                'url',
-              ).map((source, sourceIndex) => (
+              {allSources.map((source, sourceIndex) => (
                 <li key={sourceIndex}>
                   {sourceIndex + 1}.{' '}
                   <a
