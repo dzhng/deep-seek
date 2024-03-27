@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { mixtralCompletion } from '@/services/llm';
+import { opusCompletion } from '@/services/llm';
 import { toXML } from '@/lib/xml';
 
 // given a user prompt, preprocess and decompose into the exact object to find and the enriched fields
@@ -95,7 +95,7 @@ export async function preprocessPrompt({
 
   const prompt = `Given a prompt from the user, return the columns that should be shown to the user as part of the end result. Each column will be researched seperately and should be a key question that help the user understand the result more.\n${toXML({ prompt: userPrompt })}\n\nHere are some potiential examples:\n${examplesString}`;
 
-  const res = await mixtralCompletion(prompt, {
+  const res = await opusCompletion(prompt, {
     systemMessage:
       'You are an AI planner that is part of a larger information retrieval system. The final output from the information retrieval system is a table with a list of results.',
     schema,
