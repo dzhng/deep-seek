@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { mixtralCompletion } from '@/services/llm';
+import { sonnetCompletion } from '@/services/llm';
 import { toXML } from '@/lib/xml';
 
 // given a user prompt, preprocess and decompose into the exact object to find and the enriched fields
@@ -29,13 +29,11 @@ export async function preprocessSearchQuery({
 
   const prompt = `Given a prompt from the user, return the query that would be used to find the answer to the prompt via a Google Search. \n${toXML({ prompt: query })}\n\nHere are some potiential examples:\n${examplesString}`;
 
-  const res = await mixtralCompletion(prompt, {
+  const res = await sonnetCompletion(prompt, {
     systemMessage:
       'You are an AI planner that is part of a larger information retrieval system.',
-    //schema,
-    //responsePrefix: '{ "query": "',
+    schema,
   });
-  console.log('RES', res.data);
 
-  return res.data;
+  return res.data.query;
 }
