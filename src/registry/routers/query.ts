@@ -54,6 +54,7 @@ export const queryRouter = router({
         results: browseRes,
         nodeType,
       });
+      console.log(`Retrieved ${retrieveRes.length} entities, enriching...`);
 
       const promises: (() => Promise<TableCell | undefined>)[] = [];
 
