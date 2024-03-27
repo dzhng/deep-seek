@@ -9,6 +9,7 @@ export async function preprocessPrompt({
 }: {
   userPrompt: string;
 }): Promise<{
+  entity: { name: string; description: string };
   columns: { name: string; description: string }[];
 }> {
   const schema = z.object({
