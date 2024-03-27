@@ -41,8 +41,8 @@ export async function enrichCell({
   });
 
   return {
-    text: aggregatedAnswer.answer ?? '',
-    confidence: aggregatedAnswer.confidence,
+    text: aggregatedAnswer.answer ?? answer?.answer ?? '',
+    confidence: Math.max(aggregatedAnswer.confidence, answer?.confidence ?? 0),
     sources: aggregatedAnswer.sources,
   };
 }

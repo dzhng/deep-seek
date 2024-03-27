@@ -18,7 +18,7 @@ export async function retrieve({
   const contentRes = await Promise.allSettled(
     results.map(async (r): Promise<ContentResultWithSources[]> => {
       const type = await classifyContent({ entity: nodeType, content: r });
-      console.log('Content classified', type, r.title, r.content.slice(0, 500));
+      console.log('Content classified', type, r.title);
 
       if (type === 'content') {
         return [
