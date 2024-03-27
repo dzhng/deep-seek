@@ -104,3 +104,32 @@ export async function preprocessPrompt({
 
   return res.data;
 }
+
+// Given a user prompt, preprocess and generate a neural prompt in string format
+export async function preprocessNeuralPrompt({
+  userPrompt,
+}: {
+  userPrompt: string;
+}): Promise<string> {
+  const examples: { prompt: string; output: string }[] = [
+    {
+      prompt:
+        'state of art algorithms on 2d image classification with best accuracy on imagenet',
+      output:
+        'Explore the latest and most accurate 2D image classification algorithms evaluated on ImageNet.',
+    },
+    {
+      prompt: 'the best LLM model for code generation',
+      output:
+        'Identify the top-performing LLM models for code generation, focusing on metrics like HumanEval, MATH, F1 Score, MMLU, and GPQA.',
+    },
+  ];
+
+  const examplesString = toXML({
+    examples: examples.map(example => ({ example })),
+  });
+
+  const neuralPrompt = `Given a prompt from the user, generate a neural prompt that succinctly describes the task or question at hand.\nUser Prompt: ${toXML({ prompt: userPrompt })}\n\nHere are some potential examples:\n${examplesString}`;
+
+  return neuralPrompt;
+}
