@@ -21,10 +21,17 @@ describe('preprocessPrompt', () => {
 });
 
 describe('preprocessNeuralPrompt', () => {
-  it('Generates neural prompt for code generation model', async () => {
+  it('Stock use case', async () => {
     const neuralPrompt = await preprocessNeuralPrompt({
-      userPrompt: 'the best LLM model for code generation',
+      userPrompt: 'Top performing stocks in 2024',
     });
-    console.log('neuralPrompt', neuralPrompt);
+    console.log('neuralPrompt \n', neuralPrompt);
+  });
+
+  it('Laptop use case', async () => {
+    const neuralPrompt = await preprocessNeuralPrompt({
+      userPrompt: 'Best laptops 2024',
+    });
+    console.log('neuralPrompt \n', neuralPrompt);
   });
 });

@@ -111,16 +111,29 @@ export async function preprocessNeuralPrompt({
 }: {
   userPrompt: string;
 }): Promise<string> {
+  const schema = z.object({
+    prompt: z.string().describe('The original user prompt.'),
+    output: z
+      .string()
+      .describe('The generated neural prompt based on the user input.'),
+  });
+
   const examples: { prompt: string; output: string }[] = [
     {
       prompt: 'the best LLM model for code generation',
-      output: 'Here is a great LLM model for code generation:',
+      output:
+        'The best performing large language model for generating code, including model name and version, code generation capabilities such as completing code, fixing errors, adding comments or documentation, translating between languages, or optimizing code, evaluation metrics and benchmarks used to measure code generation quality. Here is a great LLM model for code generation:',
     },
     {
       prompt:
         'state of art algorithms on 2d image classification with best accuracy on imagenet',
       output:
-        'Check out this state of the art algorithm for 2D image classification with the best accuracy on Imagenet:',
+        'State-of-the-art algorithms for 2D image classification with top accuracy on the ImageNet dataset, specifying algorithm names,exact reported accuracy percentage on ImageNet, computational efficiency in terms of inference speed and model size, comparisons to other leading models. Check out this state of the art algorithm for 2D image classification with the best accuracy on Imagenet:',
+    },
+    {
+      prompt: 'best 2 dollar wine in United States',
+      output:
+        "The best wine under $2 in the USA, including specific brand names, varietals, flavor profiles, tasting notes, regions of origin within America, any awards or recognition, average price under $2, availability at major retailers or online, excluding wines above $2, non-USA origin.Here's a great $2 wine you can try in the United States:",
     },
   ];
 
@@ -128,7 +141,13 @@ export async function preprocessNeuralPrompt({
     examples: examples.map(example => ({ example })),
   });
 
-  const neuralPrompt = `Given a prompt from the user, generate a neural prompt that succinctly describes the task or question at hand.\nUser Prompt: ${toXML({ prompt: userPrompt })}\n\nHere are some potential examples:\n${examplesString}`;
+  const promot = `Given a prompt from the user, generate a neural prompt that succinctly describes the task or question at hand.\nUser Prompt: ${toXML({ prompt: userPrompt })}\n\nHere are some potential examples:\n${examplesString}`;
 
-  return neuralPrompt;
+  const neuralPrompt = await opusCompletion(promot, {
+    systemMessage:
+      'You are an AI planner that is part of a larger information retrieval system. Given user input, your task is to generate a neural prompt. The neural prompt is an explict way to autocomplete user prompt to better retrieve information on the internet. It should be in string format',
+    schema,
+  });
+
+  return neuralPrompt.data.output;
 }
