@@ -22,11 +22,10 @@ export const queryRouter = router({
 
       const results = await search({
         query: input.prompt,
-        category: 'research paper',
       });
       const browseRes = await browse({ results });
 
-      const nodeType = `${preprocessed.mainField.name} - ${preprocessed.mainField.description}`;
+      const nodeType = `${preprocessed.entity.name} - ${preprocessed.entity.description}`;
       const retrieveRes = await retrieve({
         results: browseRes,
         nodeType,
@@ -36,8 +35,8 @@ export const queryRouter = router({
 
       // retrieve all other cells async
       for (let row = 0; row < retrieveRes.length; row++) {
-        for (let column = 0; column < preprocessed.fields.length; column++) {
-          const field = preprocessed.fields[column];
+        for (let column = 0; column < preprocessed.columns.length; column++) {
+          const field = preprocessed.columns[column];
           promises.push(async () => {
             const cell = await enrichCell({
               query: `${retrieveRes[row].title} - ${field.name} - ${field.description}`,
@@ -56,7 +55,7 @@ export const queryRouter = router({
       const table: (TableCell | undefined)[][] = Array(retrieveRes.length)
         .fill(undefined)
         // add an extra column for the initial value
-        .map(() => Array(preprocessed.fields.length + 1).fill(undefined));
+        .map(() => Array(preprocessed.columns.length + 1).fill(undefined));
 
       // construct the table from outputs
       for (let row = 0; row < retrieveRes.length; row++) {
@@ -66,14 +65,14 @@ export const queryRouter = router({
           sources: retrieveRes[row].sources,
         };
         table[row][0] = cell;
-        for (let column = 0; column < preprocessed.fields.length; column++) {
+        for (let column = 0; column < preprocessed.columns.length; column++) {
           table[row][column + 1] =
-            cells[row * preprocessed.fields.length + column];
+            cells[row * preprocessed.columns.length + column];
         }
       }
 
       return {
-        columns: [preprocessed.mainField, ...preprocessed.fields],
+        columns: [preprocessed.entity, ...preprocessed.columns],
         table,
       };
     }),

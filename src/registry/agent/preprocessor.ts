@@ -12,6 +12,16 @@ export async function preprocessPrompt({
   columns: { name: string; description: string }[];
 }> {
   const schema = z.object({
+    entity: z
+      .object({
+        name: z
+          .string()
+          .describe('The name of the entity the results will consist of'),
+        description: z
+          .string()
+          .describe('Describe the entity in more details.'),
+      })
+      .describe('The type of entity that the result will consist of.'),
     columns: z
       .object({
         name: z.string().describe('A 1 - 3 word name for the column.'),
@@ -23,68 +33,60 @@ export async function preprocessPrompt({
       })
       .array()
       .describe(
-        'What additional columns should be in the final output, in additional to the mainField.',
+        'What additional columns should be in the final output, in additional to the main entity column.',
       ),
   });
 
-  const examples: { prompt: string; output: string }[] = [
+  const examples: { prompt: string; output: z.infer<typeof schema> }[] = [
     {
       prompt:
         'state of art algorithms on 2d image classification with best accuracy on imagenet',
-      output: JSON.stringify(
-        {
-          columns: [
-            { name: 'Model', description: 'The name of the model.' },
-            {
-              name: 'Accuracy',
-              description:
-                'The accuracy of image classification model evaluated using imagenet',
-            },
-            { name: 'Year', description: 'The year of the model release.' },
-            {
-              name: 'Data',
-              description:
-                'The exact training/validation/test dataset split has been used.',
-            },
-            {
-              name: 'Number of params',
-              description: 'The model size, how many parameters',
-            },
-            { name: 'Paper', description: 'List of recent tweets' },
-          ],
+      output: {
+        entity: {
+          name: 'Research paper',
+          description: 'The name of the research paper',
         },
-        null,
-        2,
-      ),
+        columns: [
+          { name: 'Model', description: 'The name of the model used' },
+          {
+            name: 'Accuracy',
+            description:
+              'The accuracy of image classification model evaluated using imagenet',
+          },
+          { name: 'Year', description: 'The year of the model release.' },
+          {
+            name: 'Data',
+            description:
+              'The exact training/validation/test dataset split has been used',
+          },
+          {
+            name: 'Number of params',
+            description: 'The model size, how many parameters',
+          },
+        ],
+      },
     },
     {
-      prompt: 'the best LLM model for code generation',
-      output: JSON.stringify(
-        {
-          columns: [
-            { name: 'Model', description: 'The name of the model.' },
-            {
-              name: 'HumanEval',
-              description:
-                "HumanEval consists of 164 hand-written programming problems with corresponding unit tests. It can test out LLM through a wide range of difficulty levels. This is the most important metrics for LLM's coding capability.",
-            },
-            {
-              name: 'MATH',
-              description:
-                'MATH is a dataset of 12,500 challenging competition mathematics problems. This can be used to test out if LLM can translate complex mathematical problem statements into accurate and efficient code.',
-            },
-            {
-              name: 'F1 Score',
-              description:
-                ' F1 score is used to evaluate the quality of generated code by comparing it against reference solutions.',
-            },
-            { name: 'MMLU', description: 'Undergraduate level knowledge.' },
-            { name: 'GPQA', description: 'Graduate level reasoning.' },
-          ],
+      prompt: 'Best laptops 2024',
+      output: {
+        entity: {
+          name: 'Laptop',
+          description: 'Model of the laptop',
         },
-        null,
-        2,
-      ),
+        columns: [
+          { name: 'Brand', description: 'The brand of the laptop' },
+          { name: 'Price', description: 'The starting price of the laptop' },
+          {
+            name: 'Storage',
+            description: 'The amount of starting storage the laptop has in GB',
+          },
+          {
+            name: 'RAM',
+            description:
+              'The amount of RAM the laptop has in its starting config',
+          },
+        ],
+      },
     },
   ];
 
@@ -99,7 +101,6 @@ export async function preprocessPrompt({
     systemMessage:
       'You are an AI planner that is part of a larger information retrieval system. The final output from the information retrieval system is a table with a list of results.',
     schema,
-    responsePrefix: '{ "columns": [',
   });
 
   return res.data;
