@@ -4,9 +4,7 @@
   "private": true,
   "packageManager": "pnpm@8.15.4",
   "scripts": {
-    "dev": "concurrently -r -n \"app,inngest\" -c \"bgBlue.bold,bgMagenta.bold\" \"pnpm dev:next\" \"pnpm dev:inngest\"",
-    "dev:next": "next dev",
-    "dev:inngest": "npx inngest-cli@latest dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -35,7 +33,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
-    "inngest": "^3.15.4",
     "jstoxml": "^5.0.1",
     "ky": "^1.2.0",
     "llm-api": "^1.5.0",
