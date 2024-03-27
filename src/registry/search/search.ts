@@ -13,12 +13,14 @@ export async function search({
   query,
   isNeural,
   category,
+  useAutoprompt = true,
   numResults = 10,
   startPublishDate,
 }: {
   query: string;
   isNeural?: boolean;
   category?: string;
+  useAutoprompt?: boolean;
   numResults?: number;
   startPublishDate?: Date;
 }): Promise<SearchResult[]> {
@@ -37,7 +39,7 @@ export async function search({
     type: isNeural ? 'neural' : 'keyword',
     category,
     numResults,
-    useAutoprompt: true,
+    useAutoprompt,
     startPublishedDate: dateString,
   });
   return searchResult.results?.map(r => ({

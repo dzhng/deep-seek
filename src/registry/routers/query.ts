@@ -4,7 +4,10 @@ import { z } from 'zod';
 
 import { protectedProcedure, router } from '@/lib/trpc/server';
 import { enrichCell } from '@/registry/agent/enrich';
-import { preprocessPrompt } from '@/registry/agent/preprocessor';
+import {
+  preprocessNeuralPrompt,
+  preprocessPrompt,
+} from '@/registry/agent/preprocessor';
 import { browse } from '@/registry/search/browse';
 import { retrieve } from '@/registry/search/retrieve';
 import { search } from '@/registry/search/search';
@@ -18,7 +21,13 @@ export const queryRouter = router({
       }),
     )
     .mutation(async ({ input }) => {
-      const preprocessed = await preprocessPrompt({ userPrompt: input.prompt });
+      const [preprocessed, neuralPrompt] = await Promise.all([
+        preprocessPrompt({ userPrompt: input.prompt }),
+        preprocessNeuralPrompt({
+          userPrompt: input.prompt,
+        }),
+      ]);
+      console.log('Preprocessed', neuralPrompt, preprocessed);
 
       // run both a neural search and keyword search in parallel, they'll pick up different results
       const results = flatten(
@@ -29,8 +38,10 @@ export const queryRouter = router({
             startPublishDate: preprocessed.startDate,
           }),
           search({
-            query: input.prompt,
+            query: neuralPrompt,
             isNeural: true,
+            // using our own autoprompt implementation for better perf
+            useAutoprompt: false,
             numResults: 10,
             startPublishDate: preprocessed.startDate,
           }),
@@ -55,6 +66,7 @@ export const queryRouter = router({
               query: `${retrieveRes[row].title} - ${field.name} - ${field.description}`,
               content: [retrieveRes[row]],
             });
+            console.log('Enriched cell', cell);
             return cell;
           });
         }
