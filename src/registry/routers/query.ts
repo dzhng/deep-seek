@@ -4,7 +4,6 @@ import { z } from 'zod';
 import { protectedProcedure, router } from '@/lib/trpc/server';
 import { enrichCell } from '@/registry/agent/enrich';
 import { preprocessPrompt } from '@/registry/agent/preprocessor';
-import { inngest } from '@/registry/inngest/client';
 import { browse } from '@/registry/search/browse';
 import { retrieve } from '@/registry/search/retrieve';
 import { search } from '@/registry/search/search';
@@ -75,14 +74,5 @@ export const queryRouter = router({
         columns: [preprocessed.entity, ...preprocessed.columns],
         table,
       };
-    }),
-  queue: protectedProcedure
-    .input(
-      z.object({
-        prompt: z.string().trim(),
-      }),
-    )
-    .mutation(async ({ input }) => {
-      await inngest.send({ name: 'app/query.run', data: input });
     }),
 });
