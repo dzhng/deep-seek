@@ -113,15 +113,14 @@ export async function preprocessNeuralPrompt({
 }): Promise<string> {
   const examples: { prompt: string; output: string }[] = [
     {
+      prompt: 'the best LLM model for code generation',
+      output: 'Here is a great LLM model for code generation:',
+    },
+    {
       prompt:
         'state of art algorithms on 2d image classification with best accuracy on imagenet',
       output:
-        'Explore the latest and most accurate 2D image classification algorithms evaluated on ImageNet.',
-    },
-    {
-      prompt: 'the best LLM model for code generation',
-      output:
-        'Identify the top-performing LLM models for code generation, focusing on metrics like HumanEval, MATH, F1 Score, MMLU, and GPQA.',
+        'Check out this state of the art algorithm for 2D image classification with the best accuracy on Imagenet:',
     },
   ];
 
