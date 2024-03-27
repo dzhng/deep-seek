@@ -116,7 +116,7 @@ export default function Home() {
                       {cell ? (
                         <>
                           <p>{cell.text}</p>
-                          <div>
+                          <div className="space-x-1">
                             {cell.sources.map((source, sourceIndex) => (
                               <a
                                 key={sourceIndex}
@@ -125,9 +125,11 @@ export default function Home() {
                                 rel="noopener noreferrer"
                                 className="text-xs text-blue-500"
                               >
+                                [
                                 {allSources
                                   .map(s => s.url)
                                   .indexOf(source.url) + 1}
+                                ]
                               </a>
                             ))}
                           </div>
