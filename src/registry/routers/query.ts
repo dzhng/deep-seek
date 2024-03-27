@@ -66,6 +66,10 @@ export const queryRouter = router({
             const cell = await enrichCell({
               query: `${retrieveRes[row].title} - ${field.name} - ${field.description}`,
               content: [retrieveRes[row]],
+            }).catch(e => {
+              // ignore any errors in enrich, just skip that cell
+              console.error('Error enriching cell', e);
+              return undefined;
             });
             console.log('Enriched cell', cell);
             return cell;
@@ -74,8 +78,7 @@ export const queryRouter = router({
       }
 
       const cells = await pall(promises, {
-        concurrency: 15,
-        stopOnError: false,
+        concurrency: 10,
       });
 
       console.log('Finished processing');
