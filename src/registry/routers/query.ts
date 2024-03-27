@@ -1,3 +1,4 @@
+import { flatten } from 'lodash';
 import pall from 'p-all';
 import { z } from 'zod';
 
@@ -19,9 +20,20 @@ export const queryRouter = router({
     .mutation(async ({ input }) => {
       const preprocessed = await preprocessPrompt({ userPrompt: input.prompt });
 
-      const results = await search({
-        query: input.prompt,
-      });
+      // run both a neural search and keyword search in parallel, they'll pick up different results
+      const results = flatten(
+        await Promise.all([
+          search({
+            query: input.prompt,
+            numResults: 5,
+          }),
+          search({
+            query: input.prompt,
+            isNeural: true,
+            numResults: 10,
+          }),
+        ]),
+      );
       const browseRes = await browse({ results });
 
       const nodeType = `${preprocessed.entity.name} - ${preprocessed.entity.description}`;
