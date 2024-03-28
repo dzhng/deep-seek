@@ -64,6 +64,10 @@ The research pipeline is split into 4 main steps:
 Here's a more detailed flow of how it works:
 ![flow](./flow.png)
 
+## Examples
+
+For anyone exploring this architecture - if you find a good or interesting use case, please add it to the examples list so other people can check it out! There's an `examples.ts` file under `app` with all the raw data of the examples. You can get the raw data via browser console after a query has finished running (just copy it into the examples file).
+
 ## Future Work
 
 - Sorting / ranking the retrieved entities by relevance - this is especially important for queries that's requesting things like "Best of" or "Fastest of"... etc.
