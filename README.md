@@ -40,7 +40,7 @@ When running the agent, check the terminal to see logs of what's happening behin
 
 ### Environment Variables
 
-Make sure you have API keys for Anthropic and Exa
+Make sure you have API keys for [Anthropic](https://anthropic.com) and [Exa](https://exa.ai)
 
 Create a .env file, and put in the following environment variables:
 
