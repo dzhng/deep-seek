@@ -29,7 +29,9 @@ const formSchema = z.object({
 });
 
 export default function Home() {
-  const [example, setExample] = useState<'laptop' | 'startup' | null>(null);
+  const [example, setExample] = useState<'laptop' | 'startup' | 'paper' | null>(
+    null,
+  );
   const runQuery = trpc.run.useMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -114,6 +116,16 @@ export default function Home() {
           disabled={runQuery.isLoading}
         >
           Best AI agent startup
+        </Button>
+        <Button
+          className={cn(example === 'paper' ? 'border border-white' : null)}
+          onClick={() =>
+            example === 'paper' ? setExample(null) : setExample('paper')
+          }
+          variant="secondary"
+          disabled={runQuery.isLoading}
+        >
+          Recent 3d Gen AI papers on dynamic scene composition
         </Button>
       </div>
 

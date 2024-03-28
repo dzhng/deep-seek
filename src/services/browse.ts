@@ -23,7 +23,7 @@ export async function browse(params: {
     });
     return { url: params.url, ...res.json<BrowseResult>() };
   } catch (e: any) {
-    console.error('Error calling browse endpoint', e.message);
+    console.error('Error calling browse endpoint', params, e.message);
     return;
   }
 }
