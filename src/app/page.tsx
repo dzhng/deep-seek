@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { compact, uniqBy } from 'lodash';
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { z } from 'zod';
 
 import { trpc } from '@/lib/trpc/client';
+import { cn } from '@/lib/ui';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -19,6 +20,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import examples from './examples';
+
 const formSchema = z.object({
   prompt: z.string().min(2, {
     message: 'Prompt must be at least 2 characters.',
@@ -26,6 +29,7 @@ const formSchema = z.object({
 });
 
 export default function Home() {
+  const [example, setExample] = useState<'laptop' | 'startup' | null>(null);
   const runQuery = trpc.run.useMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,6 +40,9 @@ export default function Home() {
 
   const onSubmit = useCallback(
     async (values: z.infer<typeof formSchema>) => {
+      // clear any examples shown
+      setExample(null);
+
       //form.reset();
       toast('Submitted');
       const res = await runQuery.mutateAsync({ prompt: values.prompt });
@@ -44,13 +51,13 @@ export default function Home() {
     [runQuery],
   );
 
-  const allSources = runQuery.data
+  const data = example
+    ? examples[example as keyof typeof examples] ?? runQuery.data
+    : runQuery.data;
+
+  const allSources = data
     ? uniqBy(
-        compact(
-          runQuery.data.table.flatMap(row =>
-            row.flatMap(cell => cell?.sources),
-          ),
-        ),
+        compact(data.table.flatMap(row => row.flatMap(cell => cell?.sources))),
         'url',
       )
     : [];
@@ -58,6 +65,7 @@ export default function Home() {
   return (
     <main className="min-h-screen space-y-3 p-24">
       <h1 className="text-lg font-bold">Deep Seek</h1>
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
           <FormField
@@ -84,12 +92,40 @@ export default function Home() {
         </form>
       </Form>
 
-      {runQuery.data && (
+      <hr />
+      <h2 className="text-md font-bold">See Examples</h2>
+      <div className="flex gap-2">
+        <Button
+          className={cn(example === 'laptop' ? 'border border-white' : null)}
+          onClick={() =>
+            example === 'laptop' ? setExample(null) : setExample('laptop')
+          }
+          variant="secondary"
+          disabled={runQuery.isLoading}
+        >
+          Best laptop 2024
+        </Button>
+        <Button
+          className={cn(example === 'startup' ? 'border border-white' : null)}
+          onClick={() =>
+            example === 'startup' ? setExample(null) : setExample('startup')
+          }
+          variant="secondary"
+          disabled={runQuery.isLoading}
+        >
+          Best AI agent startup
+        </Button>
+      </div>
+
+      {data && (
         <>
           <hr />
           <div className="w-full divide-y divide-gray-200 overflow-x-scroll">
             <div className="flex w-fit bg-gray-50">
-              {runQuery.data.columns.map((column, index) => (
+              <div className="w-[50px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                Row
+              </div>
+              {data.columns.map((column, index) => (
                 <div
                   key={index}
                   className="w-[300px] px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
@@ -100,8 +136,12 @@ export default function Home() {
             </div>
 
             <div className="divide-y divide-gray-200">
-              {runQuery.data.table.map((row, rowIndex) => (
+              {data.table.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex w-fit bg-white">
+                  <div className="w-[50px] px-6 py-5 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    {rowIndex + 1}
+                  </div>
+
                   {row.map((cell, cellIndex) => (
                     <div
                       key={cellIndex}
