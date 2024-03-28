@@ -6,8 +6,8 @@ You can see some example results here: [https://deep-seek.vercel.app/](https://d
 
 The main difference between the 2 concepts breaks down to:
 
-- Answer engine: aggregate a ton of sources to find the one correct answer
-- Retrieval engine: process a ton of sources to collect a list of entities for enrichment
+- Answer engine: aggregate a ton of sources to find the one _correct_ answer
+- Retrieval engine: process a ton of sources to collect a _comprehensive_ list of entities
 
 The end result for an answer engine is a research report, the end result for a retrieval engine is a table with all the retrieved entities and enriched columns.
 
