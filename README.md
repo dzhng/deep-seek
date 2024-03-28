@@ -55,7 +55,7 @@ The research pipeline is split into 4 main steps:
 
 1. Plan - based on the user query, the planner constructs what the shape of the end result would look like. It does this by defining the type of entity to extract, as well as the different columns in the resulting table. The columns represent additional data that is relevant for the user's query relating to the entities.
 
-2. Search - we use both standard keyword search and neural search to find relevant content to process (both types of search are provided by [Exa](https://exa.ai)). Keyword search is great at finding user generated content talking about the entities to befound (e.g. reviews, listicles.. etc). Neural search is great at finding specific entities themselves (e.g. companies, papers.. etc).
+2. Search - we use both standard keyword search and neural search to find relevant content to process (both types of search are provided by [Exa](https://exa.ai)). Keyword search is great at finding user generated content talking about the entities to be found (e.g. reviews, listicles.. etc). Neural search is great at finding specific entities themselves (e.g. companies, papers.. etc).
 
 3. Extract - all content found in search is processed via LLM to extract specific entities and its associated contents. This is done via a new technique I'm testing out where special tokens are inserted between sentences (split via winkNLP's small language model) in the content, and the LLM is tasked with defining the range of content to extract by indicating the start & end tokens. This is super fast & token efficient.
 
