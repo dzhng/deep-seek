@@ -1,4 +1,4 @@
-DeepSeek
+# DeepSeek
 
 This is a new experimental architecture for a llm powered internet scale _retrieval engine_. This architecture is very different from current research agents, which are designed as _answer engines_.
 
