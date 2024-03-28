@@ -8,6 +8,13 @@ retrieval engine: process a ton of sources to collect a list of entities for enr
 
 The end result for an answer engine is a research report, the end result for a retrieval engine is a table with all the retrieved entities and enriched columns.
 
+Here's what the end result looks like (zoomed out for scale):
+![screenshot](./screenshot.png)
+
+This is infact a small portion of the result for this query. The actual result is so large it's impossible to screenshot. There are 94 records in the final result, which the agent gathered & enriched after browsing through 356 sources.
+
+The agent also generates a confidence score for the data in the table cells as it is enriching. Note that there are certain cells highlighted in yellow - those are cells with low confidence. Those are cases where the sources may conflict, or there are no sources at all so the agent made a best guess. This is actually a number between 0 - 1, so there can definitely be better & more creative UI to showcase the score in higher fidelity.
+
 ## Getting Started
 
 To run the dev server
@@ -59,5 +66,7 @@ Here's a more detailed flow of how it works:
 - Sorting / ranking the retrieved entities by relevance - this is especially important for queries that's requesting things like "Best of" or "Fastest of"... etc.
 
 - Better entity resolution to detect duplicated entities - the agent still get stumped by things like M2 vs M3 Macbooks sometimes, there are techniques to [better format entity titles](https://eugeneyan.com/writing/product-categorization-api-part-2-data-preparation/) that could lead to better performance here.
+
+- Related to previous point, better verification of sources when enriching to ensure that it is connected to the orginal entity.
 
 - Support for deep browsing of sources - sometimes the agent should click around the web page to really drill into the content, this will be required to do a good job on searching through research papers on arxiv, for example.
