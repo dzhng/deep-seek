@@ -81,3 +81,5 @@ For anyone exploring this architecture - if you find a good or interesting use c
 - Support for deep browsing of sources - sometimes the agent should click around the web page to really drill into the content, this will be required to do a good job on searching through research papers on arxiv, for example.
 
 - Support for streaming in the data - it would be amazing to see the list populated & cells being enriched in real-time in the UI. Right now you can only get a sense of progress by watching the logs on the terminal.
+
+If you'd like to collaborate on this or just want to discuss ideas, feel free to email me at [david@aomni.com](mailto:david@aomni.com) or ping me on [twitter](https://twitter.com/dzhng).

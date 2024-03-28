@@ -66,7 +66,7 @@ export default function Home() {
     : [];
 
   return (
-    <main className="min-h-screen space-y-3 p-24">
+    <main className="min-h-screen space-y-3 p-4">
       <h1 className="text-lg font-bold">Deep Seek</h1>
 
       <Form {...form}>
