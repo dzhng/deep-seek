@@ -2,6 +2,8 @@
 
 This is a new experimental architecture for a llm powered internet scale _retrieval engine_. This architecture is very different from current research agents, which are designed as _answer engines_.
 
+You can see some example results here: [https://deep-seek.vercel.app/](https://deep-seek.vercel.app/) (Note that this won't let you do real queries, since I won't be able to afford it 😅)
+
 The main difference breaks down to:
 answer engine: aggregate a ton of sources to find the one correct answer
 retrieval engine: process a ton of sources to collect a list of entities for enrichment
