@@ -51,6 +51,9 @@ The research pipeline is split into 4 main steps:
 
 4. Enrich - we do actually have a smaller answer agent within this bigger retrieval agent, whose job is to enrich all the columns defined by the planner for every entity. This is the most time consuming part of the entire process, but it is also the reason why this agent is extremely thorough.
 
+Here's a more detailed flow of how it works:
+![flow](./flow.png)
+
 ## Future Work
 
 - Sorting / ranking the retrieved entities by relevance - this is especially important for queries that's requesting things like "Best of" or "Fastest of"... etc.
