@@ -73,3 +73,5 @@ Here's a more detailed flow of how it works:
 - Related to previous point, better verification of sources when enriching to ensure that it is connected to the orginal entity.
 
 - Support for deep browsing of sources - sometimes the agent should click around the web page to really drill into the content, this will be required to do a good job on searching through research papers on arxiv, for example.
+
+- Support for streaming in the data - it would be amazing to see the list populated & cells being enriched in real-time in the UI. Right now you can only get a sense of progress by watching the logs on the terminal.
