@@ -4,7 +4,7 @@ This is a new experimental architecture for a llm powered internet scale _retrie
 
 You can see some example results here: [https://deep-seek.vercel.app/](https://deep-seek.vercel.app/) (Note that this won't let you do real queries, since I won't be able to afford it 😅)
 
-The main difference breaks down to:
+The main difference between the 2 concepts breaks down to:
 
 - Answer engine: aggregate a ton of sources to find the one correct answer
 - Retrieval engine: process a ton of sources to collect a list of entities for enrichment
