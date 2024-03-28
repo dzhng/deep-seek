@@ -6,8 +6,8 @@ You can see some example results here: [https://deep-seek.vercel.app/](https://d
 
 The main difference between the 2 concepts breaks down to:
 
-- Answer engine: aggregate a ton of sources to find the one _correct_ answer
-- Retrieval engine: process a ton of sources to collect a _comprehensive_ list of entities
+- Answer engine: aggregate a ton of sources to find the one _correct_ answer. This is what "research agents" have converged on recently. Examples include [perplexity](https://perplexity.ai), [gpt-researcher](https://github.com/assafelovic/gpt-researcher), or [aomni](https://aomni.com).
+- Retrieval engine: process a ton of sources to collect a _comprehensive_ list of entities. So far there haven't been any serious attempts to do this yet (afaik).
 
 The end result for an answer engine is a research report, the end result for a retrieval engine is a table with all the retrieved entities and enriched columns.
 
@@ -51,6 +51,8 @@ EXA_KEY="exa_api_key"
 
 ## Architecture
 
+The system works as a multi-step research agent. The initial user query is broken down into a plan and the answer is constructed iterately as it flows through the system. Another name for this type of architecture is [flow engineering](https://x.com/karpathy/status/1748043513156272416?s=20).
+
 The research pipeline is split into 4 main steps:
 
 1. Plan - based on the user query, the planner constructs what the shape of the end result would look like. It does this by defining the type of entity to extract, as well as the different columns in the resulting table. The columns represent additional data that is relevant for the user's query relating to the entities.
@@ -70,7 +72,7 @@ For anyone exploring this architecture - if you find a good or interesting use c
 
 ## Future Work
 
-- Sorting / ranking the retrieved entities by relevance - this is especially important for queries that's requesting things like "Best of" or "Fastest of"... etc.
+- Sorting / ranking the retrieved entities by relevance - this is especially important for queries with qualifiers like "best" or "newest"... etc. This should be added as an additional step at the end of the pipeline.
 
 - Better entity resolution to detect duplicated entities - the agent still get stumped by things like M2 vs M3 Macbooks sometimes, there are techniques to [better format entity titles](https://eugeneyan.com/writing/product-categorization-api-part-2-data-preparation/) that could lead to better performance here.
 
