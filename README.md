@@ -1,8 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+DeepSeek
+
+This is a new experimental architecture for a llm powered internet scale _retrieval engine_. This architecture is very different from current research agents, which are designed as _answer engines_.
+
+The main difference breaks down to:
+answer engine: aggregate a ton of sources to find the one correct answer
+retrieval engine: process a ton of sources to collect a list of entities for enrichment
+
+The end result for an answer engine is a research report, the end result for a retrieval engine is a table with all the retrieved entities and enriched columns.
 
 ## Getting Started
 
-First, run the development server:
+To run the dev server
 
 ```bash
 npm run dev
@@ -14,23 +22,17 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to start searching
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Make sure you have API keys for Anthropic and Exa
 
-## Learn More
+Create a .env file, and put in the following environment variables:
 
-To learn more about Next.js, take a look at the following resources:
+```
+ANTHROPIC_KEY="anthropic_api_key"
+EXA_KEY="exa_api_key"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Architecture
