@@ -100,7 +100,7 @@ export default function Home() {
       <h2 className="text-md font-bold">See Examples</h2>
       <div className="flex gap-2">
         <Button
-          className={cn(example === 'laptop' ? 'border border-white' : null)}
+          className={cn(example === 'laptop' ? 'border-primary border' : null)}
           onClick={() =>
             example === 'laptop' ? setExample(null) : setExample('laptop')
           }
@@ -110,7 +110,7 @@ export default function Home() {
           Best laptop 2024
         </Button>
         <Button
-          className={cn(example === 'startup' ? 'border border-white' : null)}
+          className={cn(example === 'startup' ? 'border-primary border' : null)}
           onClick={() =>
             example === 'startup' ? setExample(null) : setExample('startup')
           }
@@ -120,7 +120,7 @@ export default function Home() {
           Best AI agent startup
         </Button>
         <Button
-          className={cn(example === 'paper' ? 'border border-white' : null)}
+          className={cn(example === 'paper' ? 'border-primary border' : null)}
           onClick={() =>
             example === 'paper' ? setExample(null) : setExample('paper')
           }
