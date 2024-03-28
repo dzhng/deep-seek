@@ -1,11 +1,10 @@
-import { compact, flatten } from 'lodash';
+import { compact } from 'lodash';
 import { NodeHtmlMarkdown } from 'node-html-markdown';
 import { RecursiveCharacterTextSplitter } from 'zod-gpt';
 
-import { BrowseResult } from '@/services/browse';
+import { browse as _browse, BrowseResult } from '@/services/browse';
 import { metaphor } from '@/services/metaphor';
 import { minifyText, normalizeMarkdownHeadings } from '@/lib/format';
-import { deepBrowse } from '@/registry/internet/deep-browse';
 import { SearchResult } from '@/registry/search/search';
 
 const MaxContentChunkSize = 60_000;
@@ -58,20 +57,17 @@ export async function browse({
   if (urlsToBrowse.length > 0) {
     const browseRes = await Promise.allSettled(
       urlsToBrowse.map(async r => {
-        const res = await deepBrowse({
-          initialUrl: r.url,
-          maxBrowse: 1,
+        const res = await _browse({
+          url: r.url,
           slowFallback: false,
-          direction: r.query ?? undefined,
+          maxContentLen: 60_000,
         });
-        return res.map(browseResult => ({ ...browseResult, query: r.query }));
+        return res ? { ...res, query: r.query } : null;
       }),
     );
     browseResults.push(
-      ...flatten(
-        compact(
-          browseRes.map(r => (r.status === 'fulfilled' ? r.value : null)),
-        ),
+      ...compact(
+        browseRes.map(r => (r.status === 'fulfilled' ? r.value : null)),
       ),
     );
   }
