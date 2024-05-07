@@ -20,7 +20,18 @@ The agent also generates a confidence score for the data in the table cells as i
 
 ## Getting Started
 
-To run the dev server
+### Installation
+
+Install any one of the following package managers
+
+- npm
+- yarn
+- pnpm
+- bun
+
+Follow the instructions in [Install](docs/install.md) to install the package manager and the project dependencies
+
+To run the dev server, use one of the following commands according to your package manager
 
 ```bash
 npm run dev
